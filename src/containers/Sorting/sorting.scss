@@ -1,0 +1,14 @@
+.sorting {
+    display: flex;
+    align-items: center;
+    &__title {
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.888889px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.6;
+        margin-right: 30px;
+    }
+}

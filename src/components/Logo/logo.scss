@@ -1,0 +1,12 @@
+@import "../../assets/styles/variables";
+
+.logo {
+    color: $primary;
+    font-size: 20px;
+    font-weight: 500;
+    &_bold {
+        span {
+            font-weight: 900;
+        }
+    }
+}

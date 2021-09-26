@@ -1,0 +1,41 @@
+.movie-card {
+    margin-bottom: 50px;
+    max-width: 322px;
+    &__poster {
+        display: block;
+        margin-bottom: 20px;
+    }
+    &__title-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    &__title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.7;
+    }
+    &__year {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.7;
+        border: 1px solid #979797;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+    &__genre {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+    }
+}
