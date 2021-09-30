@@ -1,0 +1,42 @@
+@use "fonts";
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+*::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    border: none;
+    background: none;
+    padding: 0;
+    font-family: inherit;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input {
+    border: none;
+    font-family: inherit;
+    color: #fff;
+    &::placeholder {
+        font-family: inherit;
+        font-weight: 300;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}

@@ -1,0 +1,7 @@
+@use "~styles/variables" as *;
+
+.footer {
+    text-align: center;
+    background: $secondary;
+    padding: 23px 0;
+}

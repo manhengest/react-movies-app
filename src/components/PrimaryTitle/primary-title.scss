@@ -1,0 +1,12 @@
+.primary-title {
+    display: block;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 49px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    &_search {
+        margin-bottom: 38px;
+    }
+}

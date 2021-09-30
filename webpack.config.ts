@@ -1,10 +1,11 @@
 const { resolve } = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+import { Configuration } from 'webpack'
 
 import { prodConfig } from "./webpack.production.config";
 import { devConfig } from "./webpack.development.config";
 
-const config = function (env: any, argv: { mode: string }) {
+const config = function (env: any, argv: { mode: string }): Configuration {
     const isDev = argv.mode === "development";
     const isProd = !isDev;
 
@@ -17,10 +18,10 @@ const config = function (env: any, argv: { mode: string }) {
             path: resolve(__dirname, "dist")
         },
         resolve: {
-            extensions: [".js", ".jsx", ".ts", ".tsx"],
-            // alias: {
-            //     '@fonts': resolve(__dirname, "src/assets/fonts")
-            // }
+            extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
+            alias: {
+                styles: resolve(__dirname, "src/assets/styles/")
+            }
         },
         module: {
             rules: [
@@ -55,43 +56,39 @@ const config = function (env: any, argv: { mode: string }) {
                     }
                 },
                 {
-                    test: /\.s[ac]ss$/,
-                    exclude: /node_modules/,
+                    test: /\.(sa|sc|c)ss$/,
                     use: [
+                        isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+                        "css-loader",
                         {
-                            loader: MiniCssExtractPlugin.loader,
+                            loader: "sass-loader",
                             options: {
-                                hmr: isDev,
-                                reloadAll: true,
-                                publicPath: "assets/styles/",
+                                sourceMap: true
                             },
                         },
-                        "css-loader",
-                        "sass-loader"
                     ],
                 },
                 {
-                    test: /\.(png|jpe?g|svg|gif)$/i,
-                    use: [
-                        {
-                            loader: "file-loader",
-                            options: {
-                                publicPath: "assets/images",
-                            },
-                        },
-                    ],
+                    test: /\.?svg$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: isDev ? "assets/icons/[name][ext][query]" : "assets/icons/[hash][ext][query]"
+                    }
+                },
+                {
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: isDev ? "assets/images/[name][ext][query]" : "assets/images/[hash][ext][query]"
+                    }
                 },
                 {
                     test: /\.(ttf|woff|woff2|eot)$/i,
-                    use: [
-                        {
-                            loader: "file-loader",
-                            options: {
-                                publicPath: "assets/fonts",
-                            },
-                        },
-                    ],
-                },
+                    type: 'asset/resource',
+                    generator: {
+                        filename: isDev ? "assets/fonts/[name][ext][query]" : "assets/fonts/[hash][ext][query]"
+                    }
+                }
             ]
         }
     }
