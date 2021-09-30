@@ -20,7 +20,7 @@ export const App: React.FunctionComponent = () => {
                 <Container>
                     <PrimaryHeader>
                         <Logo type={ "bold" } />
-                        <TransparentButton cb={ textCb } title={ "+ add movie" } />
+                        <TransparentButton clickHandler={ textCb } title={ "+ add movie" } />
                     </PrimaryHeader>
                     <Search />
                 </Container>

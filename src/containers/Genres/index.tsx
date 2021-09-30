@@ -38,7 +38,14 @@ export const Genres:React.FunctionComponent = () => {
     return (
         <ul className="genres">
             {
-                genres.map(genre => <GenreItem cb={ testCb } title={ genre.title } active={ genre.active } />)
+                genres.map(genre =>
+                    <GenreItem
+                        key={ genre.id }
+                        clickHandler={ testCb }
+                        title={ genre.title }
+                        active={ genre.active }
+                    />
+                )
             }
         </ul>
     )

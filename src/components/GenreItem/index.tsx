@@ -1,12 +1,12 @@
 import React from "react";
 
 interface GenreItemProps {
-    cb(): void,
+    clickHandler(): void,
     title: string,
     active: boolean
 }
 
-export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ cb, title, active }) => {
+export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ clickHandler, title, active }) => {
     const classes = ["genres__btn"]
 
     if (active) {
@@ -15,7 +15,7 @@ export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ cb, title, a
 
     return (
         <li className="genres__item">
-            <button onClick={ () => cb() } className={ classes.join(" ") }>{ title }</button>
+            <button onClick={ () => clickHandler() } className={ classes.join(" ") }>{ title }</button>
         </li>
     )
 }

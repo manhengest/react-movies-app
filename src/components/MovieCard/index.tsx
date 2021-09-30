@@ -1,13 +1,6 @@
 import React from "react";
 import "./movie-card.scss"
-
-interface MovieCardProps {
-    posterUrl: string,
-    link: string,
-    title: string,
-    genre: string,
-    year: number
-}
+import { MovieCardProps } from "./models"
 
 export const MovieCard:React.FunctionComponent<MovieCardProps> = ({ title, genre, link, year, posterUrl }) => {
     return (

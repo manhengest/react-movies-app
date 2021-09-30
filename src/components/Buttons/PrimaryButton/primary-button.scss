@@ -1,7 +1,7 @@
-@import "../../../assets/styles/variables";
+@use "~styles/variables" as *;
 
 .primary-button {
-    background: $primary;
+    background: $secondary;
     font-weight: 500;
     font-size: 20px;
     line-height: 57px;

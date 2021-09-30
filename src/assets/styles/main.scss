@@ -1,5 +1,4 @@
-@import "variables";
-@import "fonts";
+@use "fonts";
 
 * {
     margin: 0;
@@ -34,9 +33,6 @@ input {
     &::placeholder {
         font-family: inherit;
         font-weight: 300;
-    }
-    &:focus {
-        outline: none;
     }
 }
 

@@ -18,7 +18,10 @@ const config = function (env: any, argv: { mode: string }): Configuration {
             path: resolve(__dirname, "dist")
         },
         resolve: {
-            extensions: [".js", ".jsx", ".ts", ".tsx"]
+            extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
+            alias: {
+                styles: resolve(__dirname, "src/assets/styles/")
+            }
         },
         module: {
             rules: [
@@ -57,7 +60,12 @@ const config = function (env: any, argv: { mode: string }): Configuration {
                     use: [
                         isDev ? "style-loader" : MiniCssExtractPlugin.loader,
                         "css-loader",
-                        "sass-loader",
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true
+                            },
+                        },
                     ],
                 },
                 {

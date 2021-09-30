@@ -1,4 +1,4 @@
 export interface ButtonProps {
-    cb(): void,
+    clickHandler(): void,
     title: string
 }

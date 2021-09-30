@@ -1,12 +1,10 @@
-@import "../../assets/styles/variables";
+@use "~styles/variables" as *;
 
 .logo {
     color: $primary;
     font-size: 20px;
     font-weight: 500;
-    &_bold {
-        span {
-            font-weight: 900;
-        }
+    &_bold span {
+        font-weight: 900;
     }
 }

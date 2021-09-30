@@ -14,7 +14,7 @@ export const Search:React.FunctionComponent = () => {
             <PrimaryTitle title={ "FIND YOUR MOViE" } additionalClass={ "search" } />
             <div className="search__inner">
                 <SearchField />
-                <PrimaryButton cb={ textCb } title={ "Search" } />
+                <PrimaryButton clickHandler={ textCb } title={ "Search" } />
             </div>
         </div>
     )
