@@ -6,4 +6,9 @@
         display: flex;
         align-items: center;
     }
+    &__btn {
+        max-width: unset;
+        width: auto;
+        flex-grow: 1;
+    }
 }

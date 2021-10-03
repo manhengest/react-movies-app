@@ -7,15 +7,9 @@ interface GenreItemProps {
 }
 
 export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ clickHandler, title, active }) => {
-    const classes = ["genres__btn"]
-
-    if (active) {
-        classes.push("genres__btn_active")
-    }
-
     return (
         <li className="genres__item">
-            <button onClick={ () => clickHandler() } className={ classes.join(" ") }>{ title }</button>
+            <button onClick={ clickHandler } className={ `genres__btn ${active && "genres__btn_active"}` }>{ title }</button>
         </li>
     )
 }

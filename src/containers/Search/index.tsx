@@ -2,7 +2,7 @@ import React from "react";
 import "./search.scss"
 import { PrimaryTitle } from "../../components/PrimaryTitle";
 import { SearchField } from "../../components/SearchField";
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
+import {Button} from "../../components/Button";
 
 export const Search:React.FunctionComponent = () => {
     const textCb = () => {
@@ -14,7 +14,12 @@ export const Search:React.FunctionComponent = () => {
             <PrimaryTitle title={ "FIND YOUR MOViE" } additionalClass={ "search" } />
             <div className="search__inner">
                 <SearchField />
-                <PrimaryButton clickHandler={ textCb } title={ "Search" } />
+                <Button
+                    clickHandler={ textCb }
+                    title={ "Search" }
+                    type="primary-button"
+                    additionalClass="search__btn"
+                />
             </div>
         </div>
     )

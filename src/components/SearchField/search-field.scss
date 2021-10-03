@@ -6,8 +6,7 @@
     line-height: 57px;
     padding: 0 19px;
     margin-right: 14px;
-    width: 100%;
-    max-width: 712px;
+    flex-basis: 710px;
     &::placeholder {
         color: #FFFFFF;
         mix-blend-mode: normal;
