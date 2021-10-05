@@ -1,10 +1,12 @@
 import React from "react";
 import "./movie-card.scss"
-import { MovieCardProps } from "./models"
+import { MovieCardProps } from "./interface"
+import { MovieCardContextMenu } from "../MovieCardContextMenu";
 
 export const MovieCard:React.FunctionComponent<MovieCardProps> = ({ title, genre, link, year, posterUrl }) => {
     return (
         <div className="movie-card">
+            <MovieCardContextMenu />
             <a className="movie-card__poster" href={ link }>
                 <img className="movie-card__poster-img" src={ posterUrl } alt={ title }/>
             </a>

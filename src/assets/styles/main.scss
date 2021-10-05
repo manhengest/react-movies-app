@@ -16,6 +16,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+body, html {
+    overflow-x: hidden;
+}
+
 button {
     border: none;
     background: none;
@@ -26,7 +30,7 @@ button {
     }
 }
 
-input {
+input, textarea {
     border: none;
     font-family: inherit;
     color: #fff;
@@ -36,7 +40,20 @@ input {
     }
 }
 
+textarea {
+    resize: none;
+}
+
 img {
     display: block;
     max-width: 100%;
+}
+
+.close-btn {
+    background: url("../icons/close.svg") no-repeat center;
+}
+
+.no-scroll {
+    overflow: hidden;
+    padding-right: 17px;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./movie-list.scss"
 import { Container } from "../Container";
 import { MovieCard } from "../../components/MovieCard";
+import { Genre } from "../../components/MovieCard/interface";
 
 export const MoviesList:React.FunctionComponent = () => {
     // const movies = undefined
@@ -11,7 +12,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 1998,
             title: "Pulp Fiction",
-            genre: "Action & Adventure",
+            genre: Genre.COMEDY,
             posterUrl: require("../../assets/images/poster-1.jpg")
         },
         {
@@ -19,7 +20,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 2018,
             title: "Bohemian Rhapsody",
-            genre: "Drama, Biography, Music",
+            genre: Genre.DOCUMENTARY,
             posterUrl: require("../../assets/images/poster-2.jpg")
         },
         {
@@ -27,7 +28,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 2004,
             title: "Kill Bill: Vol 2",
-            genre: "Oscar winning Movie",
+            genre: Genre.COMEDY,
             posterUrl: require("../../assets/images/poster-3.jpg")
         },
         {
@@ -35,7 +36,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 2019,
             title: "Avengers: War of Infinity",
-            genre: "Action & Adventure",
+            genre: Genre.HORROR,
             posterUrl: require("../../assets/images/poster-4.jpg")
         },
         {
@@ -43,7 +44,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 2010,
             title: "Inception",
-            genre: "Action & Adventure",
+            genre: Genre.CRIME,
             posterUrl: require("../../assets/images/poster-5.jpg")
         },
         {
@@ -51,7 +52,7 @@ export const MoviesList:React.FunctionComponent = () => {
             link: "#",
             year: 2007,
             title: "Reservoir dogs",
-            genre: "Oscar winning Movie",
+            genre: Genre.DOCUMENTARY,
             posterUrl: require("../../assets/images/poster-6.jpg")
         },
     ]
