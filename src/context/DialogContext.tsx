@@ -37,13 +37,13 @@ const reducer = (state: any, action: { type?: any; payload?: any; }) => {
     }
 }
 
-export const DialogProvider = (props: PropsWithChildren<{}>) => {
+export const DialogProvider: React.FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, defaultState)
     const store = { state, dispatch }
     // console.log(store)
     return (
         <DialogContext.Provider value={ store }>
-            { props.children }
+            { children }
         </DialogContext.Provider>
     )
 }

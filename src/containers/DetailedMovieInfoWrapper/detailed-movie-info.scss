@@ -1,0 +1,51 @@
+@use "~styles/variables" as *;
+
+.detailed-movie-info {
+    background: $mainBg;
+    padding-bottom: 30px;
+    &__inner {
+        display: flex;
+    }
+    &__info-wrap {
+        padding-left: 55px;
+        flex-basis: calc(100% - 320px);
+    }
+    &__title-wrap {
+        display: flex;
+        align-items: center;
+    }
+    &__rating {
+        margin-left: 25px;
+    }
+    &__genre {
+        display: block;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    &__additional-info {
+        margin-bottom: 30px;
+    }
+    &__primary-field {
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 29px;
+        color: #F65261;
+        &:not(:first-of-type) {
+            margin-left: 50px;
+        }
+    }
+    &__description {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 1.4;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+    }
+}

@@ -1,18 +1,19 @@
 import React from "react";
 import "./assets/styles/main.scss"
-import { MainBanner } from "./components/Banner";
-import { MoviesContainer } from "./containers/MoviesContainer";
 import { Footer } from "./components/Footer";
-import {DialogProvider} from "./context/DialogContext";
-import {Modal} from "./components/Modal";
-
+import { DialogProvider } from "./context/DialogContext";
+import { ViewProvider } from "./context/ViewContext";
+import { Modal } from "./components/Modal";
+import { AppContainer } from "./containers/AppContainer";
 
 export const App: React.FunctionComponent = () => {
     return (
         <React.StrictMode>
             <DialogProvider>
-                <MainBanner />
-                <MoviesContainer />
+                <ViewProvider>
+                    <AppContainer />
+                </ViewProvider>
+
                 <Footer />
 
                 <Modal type="add"/>

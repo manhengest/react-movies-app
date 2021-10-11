@@ -11,5 +11,8 @@ export interface MovieCardProps {
     link: string,
     title: string,
     genre: Genre,
-    year: number
+    year: number,
+    duration: number,
+    description: string,
+    rating: number
 }
