@@ -3,6 +3,7 @@ import "./filter.scss"
 import { Genres } from "../Genres";
 import { Sorting } from "../Sorting";
 import { Container } from "../Container";
+import { ResultsCounter } from "../../components/ResultsCounter";
 
 export const Filter:React.FunctionComponent = () => {
     return (
@@ -12,9 +13,7 @@ export const Filter:React.FunctionComponent = () => {
                     <Genres />
                     <Sorting />
                 </div>
-                <div className="filter__results">
-                    <span className="filter__results-text"><span>39</span> movies found</span>
-                </div>
+                <ResultsCounter />
             </Container>
         </div>
     )

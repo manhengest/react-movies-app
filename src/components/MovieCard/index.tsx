@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./movie-card.scss"
-import { MovieCardProps } from "./interface"
+import { Movie } from "./interface"
 import { MovieCardContextMenu } from "../MovieCardContextMenu";
-import { actionControlView, ViewContext } from "../../context/ViewContext";
+import { useDispatch } from "react-redux";
+import { setDetailedViewData, setViewMode } from "../../store/reducers/appReducer";
+import { GenresList } from "../GenresList";
+import { ReleaseDate } from "../ReleaseDate";
 
-export const MovieCard:React.FunctionComponent<MovieCardProps> = ({ title, genre, link, year, posterUrl, duration, description, rating }) => {
-    const { dispatch } = useContext(ViewContext)
+export const MovieCard:React.FunctionComponent<Movie> = ({ title, genres, release_date, poster_path, runtime, overview, vote_average }) => {
+    const dispatch = useDispatch()
     const setDetailedView = () => {
-        dispatch(actionControlView("view", "detailed"))
+        dispatch(setViewMode("detailed"))
     }
     const sendData = () => {
-        dispatch(actionControlView("data", { title, genre, link, year, posterUrl, duration, description, rating }))
+        dispatch(setDetailedViewData({ title, genres, release_date, poster_path, runtime, overview, vote_average }))
     }
     const handleClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -24,23 +27,24 @@ export const MovieCard:React.FunctionComponent<MovieCardProps> = ({ title, genre
             <a
                 onClick={ handleClick }
                 className="movie-card__poster"
-                href={ link }
+                href="#"
             >
-                <img className="movie-card__poster-img" src={ posterUrl } alt={ title }/>
+                <img className="movie-card__poster-img" src={ poster_path } alt={ title }/>
             </a>
             <div className="movie-card__title-wrap">
-                <a
+                <button
                     onClick={ handleClick }
                     className="movie-card__title"
-                    href={ link }
                 >
                     { title }
-                </a>
+                </button>
                 <span className="movie-card__year">
-                    { year }
+                    <ReleaseDate releaseDate={ release_date } />
                 </span>
             </div>
-            <span className="movie-card__genre">{ genre }</span>
+            <span className="movie-card__genre">
+                <GenresList genres={ genres } />
+            </span>
         </div>
     )
 }

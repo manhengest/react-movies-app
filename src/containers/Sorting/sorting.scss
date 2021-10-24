@@ -1,3 +1,5 @@
+@use "~styles/variables" as *;
+
 .sorting {
     display: flex;
     align-items: center;
@@ -12,8 +14,18 @@
         margin-right: 30px;
     }
     &__btn {
+        display: block;
+        width: 100%;
         font-size: 16px;
         color: #fff;
-        padding: 5px 0;
+        padding: 5px 18px;
+        text-align: left;
+        transition: background-color .3s ease;
+        &:hover {
+            background-color: $primary;
+        }
+    }
+    &__trigger {
+        min-width: 165px;
     }
 }

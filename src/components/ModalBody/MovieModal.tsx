@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import { LabeledInput } from "../Forms/LabeledInput";
 import { CustomSelect } from "../Forms/CustomSelect";
 import { Button } from "../Button";
-import { DialogContext, actionControlVisibility } from "../../context/DialogContext";
 import { CustomCheckbox } from "../Forms/CustomCheckbox";
+import { useDispatch } from "react-redux";
+import { toggleModal } from "../../store/reducers/appReducer";
 
 export const MovieModal:React.FunctionComponent = () => {
+    const dispatch = useDispatch()
     const resetHandler = () => {
         toggleEditModal()
         toggleAddModal()
     }
-
-    const { dispatch } = useContext(DialogContext)
     const toggleEditModal = () => dispatch(
-        actionControlVisibility('edit', false)
+        toggleModal("isEditModalOpened", true)
     )
     const toggleAddModal = () => dispatch(
-        actionControlVisibility('add', false)
+        toggleModal("isAddModalOpened", true)
     )
 
     return (
@@ -27,10 +27,10 @@ export const MovieModal:React.FunctionComponent = () => {
                     <LabeledInput type="url" label="Movie url" placeholder="https://" name="movie_url" id="edit-movie-url" />
                     <CustomSelect id="edit-movie-genre" label="Genre" placeholder="Select genre" theme="as-field" >
                         <ul>
-                            <li className="custom-select__dropdown-item">
+                            <li>
                                 <CustomCheckbox />
                             </li>
-                            <li className="custom-select__dropdown-item">
+                            <li>
                                 <CustomCheckbox />
                             </li>
                         </ul>
@@ -46,8 +46,8 @@ export const MovieModal:React.FunctionComponent = () => {
                 <LabeledInput type="textarea" label="Overview" placeholder="Movie description" name="movie_overview" id="edit-movie-overview" />
             </div>
             <div className="modal__footer">
-                <Button clickHandler={resetHandler} title="Reset" type="info-button" />
-                <Button clickHandler={resetHandler} title="Submit" type="primary-button" />
+                <Button clickHandler={ resetHandler } title="Reset" type="info-button" />
+                <Button clickHandler={ resetHandler } title="Submit" type="primary-button" />
             </div>
         </div>
     )

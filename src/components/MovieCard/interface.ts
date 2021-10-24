@@ -6,13 +6,27 @@ export enum Genre {
     CRIME = "Crime"
 }
 
-export interface MovieCardProps {
-    posterUrl: string,
-    link: string,
+export interface Movie {
+    id?: number,
+    poster_path: string,
     title: string,
-    genre: Genre,
-    year: number,
-    duration: number,
-    description: string,
-    rating: number
+    genres: string[],
+    release_date: string,
+    runtime: number,
+    overview: string,
+    vote_average: number
+}
+
+export interface MoviesResponse {
+    data: {
+        data: Movie[],
+        limit: number,
+        offset: number,
+        totalAmount: number
+    }
+}
+
+export interface ReduxAction {
+    type: string,
+    payload: any
 }

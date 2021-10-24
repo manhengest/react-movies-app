@@ -8,6 +8,6 @@ interface PrimaryTitleProps {
 
 export const PrimaryTitle:React.FunctionComponent<PrimaryTitleProps> = ({ title, additionalClass }) => {
     return (
-        <span className={ `primary-title ${ additionalClass && "primary-title_" + additionalClass }` }>{ title }</span>
+        <span className={ `primary-title ${ additionalClass ? "primary-title_" + additionalClass : "" }` }>{ title }</span>
     )
 }

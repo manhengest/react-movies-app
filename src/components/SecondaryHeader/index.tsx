@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./secondary-header.scss"
 import { Container } from "../../containers/Container";
 import { Logo } from "../Logo";
 import { SearchButton } from "../SearchButton";
-import { actionControlView, ViewContext } from "../../context/ViewContext";
+import { useDispatch } from "react-redux";
+import { setViewMode } from "../../store/reducers/appReducer";
 
 export const SecondaryHeader:React.FunctionComponent = () => {
-    const { dispatch } = useContext(ViewContext)
+    const dispatch = useDispatch()
     const changeView = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(actionControlView("view", "search"))
+        dispatch(setViewMode("search"))
     }
 
     return (

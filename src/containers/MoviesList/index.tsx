@@ -1,12 +1,12 @@
 import React from "react";
+import { useSelector } from 'react-redux'
 import "./movie-list.scss"
 import { Container } from "../Container";
 import { MovieCard } from "../../components/MovieCard";
-import { Genre } from "../../components/MovieCard/interface";
+import { Movie } from "../../components/MovieCard/interface";
 
 export const MoviesList:React.FunctionComponent = () => {
-    // const movies = undefined
-    const movies = [
+    /*const movies = [
         {
             id: 1,
             link: "#",
@@ -73,24 +73,24 @@ export const MoviesList:React.FunctionComponent = () => {
             rating: 9,
             description: "Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta) are two hit men who are out to retrieve a suitcase stolen from their employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also asked Vincent to take his wife Mia (Uma Thurman) out a few days later when Wallace himself will be out of town. Butch Coolidge (Bruce Willis) is an aging boxer who is paid by Wallace to lose his fight. The lives of these seemingly unrelated people are woven together comprising of a series of funny, bizarre and uncalled-for incidents.—Soumitra"
         },
-    ]
+    ]*/
+    const movies = useSelector((state: any) => state.moviesData.movies)
 
     return (
         <div className="movies-list">
             <Container>
                 <div className="movies-list__inner">
                     {
-                        movies.map(movie =>
+                        movies.map((movie: Movie) =>
                             <MovieCard
                                 key={ movie.id }
-                                posterUrl={ movie.posterUrl }
-                                link={ movie.link }
+                                poster_path={ movie.poster_path }
                                 title={ movie.title }
-                                genre={ movie.genre }
-                                year={ movie.year }
-                                duration={ movie.duration }
-                                rating={ movie.rating }
-                                description={ movie.description }
+                                genres={ movie.genres }
+                                release_date={ movie.release_date }
+                                runtime={ movie.runtime }
+                                overview={ movie.overview }
+                                vote_average={ movie.vote_average }
                             />
                         )
                     }

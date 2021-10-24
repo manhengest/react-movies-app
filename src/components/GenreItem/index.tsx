@@ -1,15 +1,21 @@
 import React from "react";
 
 interface GenreItemProps {
-    clickHandler(): void,
+    clickHandler(title: string, id: number): void,
     title: string,
-    active: boolean
+    activeGenres: string[],
+    id: number
 }
 
-export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ clickHandler, title, active }) => {
+export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ id, clickHandler, title, activeGenres }) => {
+    let isActive = activeGenres.includes(title) || (!activeGenres.length && id === 1)
+
     return (
-        <li className="genres__item">
-            <button onClick={ clickHandler } className={ `genres__btn ${active && "genres__btn_active"}` }>{ title }</button>
-        </li>
+        <button
+            onClick={ () => clickHandler(title, id) }
+            className={ `genres__btn ${ isActive ? "genres__btn_active" : "" }` }
+        >
+            { title }
+        </button>
     )
 }

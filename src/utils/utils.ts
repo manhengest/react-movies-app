@@ -5,3 +5,9 @@ export const movieDurationConverter = (duration: number): string => {
     const clearedMinutes = Math.round(minutes);
     return clearedMinutes ? `${clearedHours}h ${clearedMinutes}min` : `${clearedHours}h`
 }
+
+export const addOrRemoveFromArray = (array: any[], newItem: any) => {
+    array.indexOf(newItem) === -1 ? array.push(newItem) : array.splice(array.indexOf(newItem), 1)
+
+    return array
+}
