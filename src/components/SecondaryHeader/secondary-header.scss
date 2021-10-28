@@ -1,0 +1,12 @@
+@use "~styles/variables" as *;
+
+.secondary-header {
+    background: $mainBg;
+    padding-top: 35px;
+    padding-bottom: 30px;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

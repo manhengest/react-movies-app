@@ -5,20 +5,15 @@
     align-items: center;
     position: relative;
     z-index: 4;
-    &__item {
-        padding: 0 13px;
-        &:first-of-type {
-            padding-left: 3px;
-        }
-    }
     &__btn {
         font-weight: 500;
         font-size: 16px;
         line-height: 20px;
         text-transform: uppercase;
         color: #FFFFFF;
-        padding: 20px 2px;
+        padding: 20px 13px;
         border-bottom: 3px solid transparent;
+        transition: border-bottom-color .3s ease;
     }
     &__btn_active {
         border-bottom-color: $primary;

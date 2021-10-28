@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./assets/styles/main.scss"
-import { MainBanner } from "./components/Banner";
-import { MoviesContainer } from "./containers/MoviesContainer";
 import { Footer } from "./components/Footer";
-import {DialogProvider} from "./context/DialogContext";
-import {Modal} from "./components/Modal";
-
+import { fetchMovies } from "./store/reducers/movieReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { MainBanner } from "./components/Banner";
+import { DetailedMovieInfoWrapper } from "./containers/DetailedMovieInfoWrapper";
+import { MoviesContainer } from "./containers/MoviesContainer";
+import { Modals } from "./containers/Modals";
 
 export const App: React.FunctionComponent = () => {
-    return (
-        <React.StrictMode>
-            <DialogProvider>
-                <MainBanner />
-                <MoviesContainer />
-                <Footer />
+    const dispatch = useDispatch()
+    const viewMode = useSelector((state: any) => state.appData.viewMode)
 
-                <Modal type="add"/>
-                <Modal type="edit"/>
-                <Modal type="delete"/>
-            </DialogProvider>
-        </React.StrictMode>
+    useEffect(() => {
+        dispatch(fetchMovies())
+    }, [])
+
+    return (
+        <>
+            { viewMode === "search" ? <MainBanner /> : <DetailedMovieInfoWrapper /> }
+            <MoviesContainer />
+            <Footer />
+            <Modals />
+        </>
     )
 }

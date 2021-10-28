@@ -1,8 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { Provider } from 'react-redux'
 import { App } from "./App";
-import Modal from 'react-modal';
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root');
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import store from "./store";
+
+render(
+    <React.StrictMode>
+        <Provider store={ store }>
+            <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
+);

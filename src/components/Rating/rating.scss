@@ -1,0 +1,16 @@
+.rating {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    text-align: center;
+    &__number {
+        margin: auto;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+    }
+}

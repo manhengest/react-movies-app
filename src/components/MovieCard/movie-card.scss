@@ -28,6 +28,10 @@
         color: #FFFFFF;
         mix-blend-mode: normal;
         opacity: 0.7;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     &__year {
         font-weight: 500;
