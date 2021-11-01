@@ -1,16 +1,30 @@
+import { Field } from "formik";
 import React from "react";
 
-export const CustomCheckbox:React.FunctionComponent = () => {
+interface CustomCheckboxProps {
+    name: string,
+    title: string,
+    id: string
+}
+
+export const CustomCheckbox:React.FunctionComponent<CustomCheckboxProps> = ({ name, title, id }) => {
     return (
         <div className="custom-checkbox">
-            <input
-                id="12"
+            <Field
+                id={ id }
+                name={ name }
+                value={ title }
                 type="checkbox"
                 className="custom-checkbox__input"
             />
-            <label className="custom-checkbox__label-wrap" htmlFor="12">
+            <label
+                htmlFor={ id }
+                className="custom-checkbox__label-wrap"
+            >
                 <span className="custom-checkbox__box" />
-                <span className="custom-checkbox__label">Crime</span>
+                <span className="custom-checkbox__label">
+                    { title }
+                </span>
             </label>
         </div>
     )

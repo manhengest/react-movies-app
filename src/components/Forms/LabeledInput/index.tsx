@@ -1,6 +1,7 @@
 import React from "react";
 import "../inputs.scss"
 import { CustomLabel } from "../CustomLabel";
+import { ErrorMessage, Field } from "formik";
 
 interface LabeledInputProps {
     type: string,
@@ -16,20 +17,26 @@ export const LabeledInput:React.FunctionComponent<LabeledInputProps> = ({ type, 
             <CustomLabel id={ id } label={ label } />
             {
                 type === "textarea" ?
-                <textarea
-                    id={ id }
-                    name={ name }
-                    placeholder={ placeholder }
-                    className="custom-input custom-textarea"
-                /> :
-                <input
-                    id={ id }
-                    type={ type }
-                    name={ name }
-                    placeholder={ placeholder }
-                    className="custom-input"
-                />
+                    <Field
+                        as="textarea"
+                        id={ id }
+                        name={ name }
+                        placeholder={ placeholder }
+                        className="custom-input custom-textarea"
+                    /> :
+                    <Field
+                        id={ id }
+                        type={ type }
+                        name={ name }
+                        placeholder={ placeholder }
+                        className="custom-input"
+                    />
             }
+            <ErrorMessage
+                name={ name }
+                className="validation-error"
+                component="span"
+            />
         </div>
     )
 }

@@ -14,7 +14,11 @@ export const PrimaryHeader:React.FunctionComponent = () => {
     return (
         <header className="primary-header">
             <Logo type={ "bold" } />
-            <Button clickHandler={ openAddMovieModal } title={ "+ add movie" } type="transparent-button" />
+            <Button
+                clickHandler={ openAddMovieModal }
+                title={ "+ add movie" }
+                buttonType="transparent-button"
+            />
         </header>
     )
 }

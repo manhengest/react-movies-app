@@ -2,20 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./genres.scss"
 import { GenreItem } from "../../components/GenreItem";
-import { Genre } from "../../components/MovieCard/interface";
+import { genres } from "../../utils/common";
 import { addOrRemoveFromArray } from "../../utils/utils";
 import { fetchMovies, updateSelectedGenres } from "../../store/reducers/movieReducer";
+import { RootState } from "../../store";
 
 export const Genres:React.FunctionComponent = () => {
     const dispatch = useDispatch()
-    const selectedGenres = useSelector((state: any) => state.moviesData.selectedGenres)
-    const genres = Object
-        .values(Genre)
-        .map((title, _id) => ({
-            title,
-            id: _id + 1,
-            active: !_id
-        }))
+    const selectedGenres = useSelector((state: RootState) => state.moviesData.selectedGenres)
 
     const clickHandler = (title: string, id: number) => {
         selectGenre(title, id)

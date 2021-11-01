@@ -5,46 +5,65 @@ import { DeleteModal } from "../ModalBody/DeleteModal";
 import { OutsideAlerter } from "../../containers/OutsideAlerter";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
+import { SuccessModal } from "../ModalBody/SuccessModal";
+import { RootState } from "../../store";
 
 interface ModalProps {
-    variable: "isAddModalOpened" | "isEditModalOpened" | "isDeleteModalOpened"
+    variable: "isAddModalOpened" | "isEditModalOpened" | "isDeleteModalOpened" | "isSuccessModalOpened"
 }
 
 export const Modal:React.FunctionComponent<ModalProps> = ({ variable }) => {
     const dispatch = useDispatch()
-    const visible = useSelector((state: any) => state.appData[variable])
+    const visible = useSelector((state: RootState) => state.appData[variable])
     const onClose = () => {
         dispatch(toggleModal(variable, !visible))
     }
     let modalTitle = ""
+    let modalType = "wide"
 
     switch (variable) {
         case "isAddModalOpened":
-            modalTitle = "add"
+            modalTitle = "add movie"
             break
         case "isEditModalOpened":
-            modalTitle = "edit"
+            modalTitle = "edit movie"
             break
         case "isDeleteModalOpened":
-            modalTitle = "delete"
+            modalTitle = "delete movie"
+            modalType = "narrow"
+            break
+        case "isSuccessModalOpened":
+            modalTitle = "congratulations!"
+            modalType = "narrow"
             break
     }
 
     return !!visible ? (
         <div className="overlay">
             <OutsideAlerter fn={ onClose }>
-                <div className={ `modal modal_${ modalTitle }` }>
+                <div className={ `modal modal_${ modalType } modal_${ variable }` }>
                     <button
                         onClick={ onClose }
                         className="modal__close-btn close-btn"
                     />
 
+                    { variable === "isSuccessModalOpened" &&
+                        <div className="modal__check-icon">
+                            <img
+                                width="68"
+                                src={ require("../../assets/icons/red-round-check.svg") }
+                                alt="red-round-check"
+                            />
+                        </div>
+                    }
+
                     <div className="modal__header">
-                        <span className="modal__title">{ modalTitle.toUpperCase() } MOVIE</span>
+                        <span className="modal__title">{ modalTitle.toUpperCase() }</span>
                     </div>
 
-                    { (variable === "isAddModalOpened" || variable === "isEditModalOpened") && <MovieModal /> }
+                    { (variable === "isAddModalOpened" || variable === "isEditModalOpened") && <MovieModal modalType={ variable } /> }
                     { variable === "isDeleteModalOpened" && <DeleteModal /> }
+                    { variable === "isSuccessModalOpened" && <SuccessModal /> }
                 </div>
             </OutsideAlerter>
         </div>

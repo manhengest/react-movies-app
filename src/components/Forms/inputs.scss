@@ -2,7 +2,9 @@
 @use "~styles/mixins" as *;
 
 .custom-field {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
 }
 
 .custom-label {
@@ -150,4 +152,15 @@
 .custom-textarea {
     height: 195px;
     max-height: unset;
+}
+
+.validation-error {
+    display: block;
+    font-size: 14px;
+    color: $primary;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

@@ -90,3 +90,19 @@ export const fetchMovies = (limit: number = 9) => async (dispatch: any, getState
     dispatch(updateMovies(response.data.data))
     dispatch(updateMoviesCount(response.data.totalAmount))
 }
+
+export const createMovie = (data: Movie) => async () => {
+    return await axios.post("http://localhost:4000/movies", data)
+}
+
+export const getMovie = (id: number) => async () => {
+    return await axios.get(`http://localhost:4000/movies/${ id }`)
+}
+
+export const updateMovie = (data: Movie) => async () => {
+    return await axios.put("http://localhost:4000/movies", data)
+}
+
+export const deleteMovie = (id: number) => async () => {
+    return await axios.delete(`http://localhost:4000/movies/${ id }`)
+}

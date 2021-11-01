@@ -17,7 +17,7 @@ export const Search:React.FunctionComponent = () => {
                 <Button
                     clickHandler={ textCb }
                     title={ "Search" }
-                    type="primary-button"
+                    buttonType="primary-button"
                     additionalClass="search__btn"
                 />
             </div>

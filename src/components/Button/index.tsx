@@ -2,15 +2,23 @@ import React from "react";
 import "./buttons.scss"
 
 export interface ButtonProps {
-    clickHandler(): void,
     title: string,
-    type: "primary-button" | "transparent-button" | "info-button",
-    additionalClass?: string
+    buttonType: "primary-button" | "transparent-button" | "info-button",
+    type?: "submit" | "button",
+    disabled?: boolean,
+    additionalClass?: string,
+    clickHandler?: () => void
 }
 
-export const Button:React.FunctionComponent<ButtonProps> = ({ title, clickHandler, type, additionalClass }) => {
+
+export const Button:React.FunctionComponent<ButtonProps> = ({ title, clickHandler, buttonType, type = "button", disabled, additionalClass }) => {
     return (
-        <button className={ `btn ${type} ${additionalClass}` } onClick={ clickHandler }>
+        <button
+            type={ type }
+            disabled={ disabled }
+            onClick={ clickHandler }
+            className={ `btn ${ buttonType } ${ additionalClass ? additionalClass : "" }` }
+        >
             { title }
         </button>
     )

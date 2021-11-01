@@ -7,6 +7,7 @@ export const Modals:React.FunctionComponent = () => {
             <Modal variable="isAddModalOpened"/>
             <Modal variable="isEditModalOpened"/>
             <Modal variable="isDeleteModalOpened"/>
+            <Modal variable="isSuccessModalOpened"/>
         </>
     )
 }
