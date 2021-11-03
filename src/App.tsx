@@ -7,10 +7,11 @@ import { MainBanner } from "./components/Banner";
 import { DetailedMovieInfoWrapper } from "./containers/DetailedMovieInfoWrapper";
 import { MoviesContainer } from "./containers/MoviesContainer";
 import { Modals } from "./containers/Modals";
+import { RootState } from "./store";
 
 export const App: React.FunctionComponent = () => {
     const dispatch = useDispatch()
-    const viewMode = useSelector((state: any) => state.appData.viewMode)
+    const viewMode = useSelector((state: RootState) => state.appData.viewMode)
 
     useEffect(() => {
         dispatch(fetchMovies())

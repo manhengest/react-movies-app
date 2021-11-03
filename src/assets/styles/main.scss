@@ -45,7 +45,6 @@ textarea {
 }
 
 img {
-    display: block;
     max-width: 100%;
 }
 
@@ -56,4 +55,8 @@ img {
 .no-scroll {
     overflow: hidden;
     padding-right: 17px;
+}
+
+.relative {
+    position: relative;
 }

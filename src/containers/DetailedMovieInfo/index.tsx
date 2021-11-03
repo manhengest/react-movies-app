@@ -5,9 +5,10 @@ import { movieDurationConverter } from "../../utils/utils";
 import { useSelector } from "react-redux";
 import { GenresList } from "../../components/GenresList";
 import { ReleaseDate } from "../../components/ReleaseDate";
+import { RootState } from "../../store";
 
 export const DetailedMovieInfo:React.FunctionComponent = () => {
-    const data = useSelector((state: any) => state.appData.detailedViewData)
+    const data = useSelector((state: RootState) => state.appData.detailedViewData)
     const duration = movieDurationConverter(data.runtime)
 
     return (

@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
 
-export const MovieCardContextMenu:React.FunctionComponent = () => {
+export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ id }) => {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const openDropdown = () => setIsOpen(true)
     const closeDropdown = () => setIsOpen(false)
     const onEditDialogOpen = () => dispatch(
-        toggleModal("isEditModalOpened", true)
+        toggleModal("isEditModalOpened", true, id)
     )
     const onDeleteDialogOpen = () => dispatch(
-        toggleModal("isDeleteModalOpened", true)
+        toggleModal("isDeleteModalOpened", true, id)
     )
     const handleMouseLeave = () => {
         closeDropdown()

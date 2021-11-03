@@ -5,7 +5,7 @@ import { OutsideAlerter } from "../../../containers/OutsideAlerter";
 interface CustomSelectProps {
     id: string,
     placeholder: string,
-    theme: "as-button" | "as-field"
+    theme: "as-button" | "as-field",
     buttonClass?: string,
     label?: string
 }
@@ -37,6 +37,7 @@ export const CustomSelect:React.FunctionComponent<CustomSelectProps> = (
             <OutsideAlerter fn={ closeDropdown }>
                 <div className="custom-select__dropdown-wrap">
                     <button
+                        type="button"
                         className={`custom-input custom-select__trigger ${ theme } ${ buttonClass }`}
                         onClick={ toggleDropdown }
                     >

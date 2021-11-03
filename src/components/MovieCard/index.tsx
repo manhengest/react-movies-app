@@ -7,13 +7,13 @@ import { setDetailedViewData, setViewMode } from "../../store/reducers/appReduce
 import { GenresList } from "../GenresList";
 import { ReleaseDate } from "../ReleaseDate";
 
-export const MovieCard:React.FunctionComponent<Movie> = ({ title, genres, release_date, poster_path, runtime, overview, vote_average }) => {
+export const MovieCard:React.FunctionComponent<Movie> = ({ id, title, genres, release_date, poster_path, runtime, overview, vote_average }) => {
     const dispatch = useDispatch()
     const setDetailedView = () => {
         dispatch(setViewMode("detailed"))
     }
     const sendData = () => {
-        dispatch(setDetailedViewData({ title, genres, release_date, poster_path, runtime, overview, vote_average }))
+        dispatch(setDetailedViewData({ id, title, genres, release_date, poster_path, runtime, overview, vote_average }))
     }
     const handleClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ export const MovieCard:React.FunctionComponent<Movie> = ({ title, genres, releas
 
     return (
         <div className="movie-card">
-            <MovieCardContextMenu />
+            <MovieCardContextMenu id={ id } />
             <a
                 onClick={ handleClick }
                 className="movie-card__poster"
