@@ -12,7 +12,9 @@ export const devConfig: WebpackDevConfiguration = {
     mode: "development",
     devServer: {
         port: 8000,
-        hot: true
+        hot: true,
+        open: true,
+        historyApiFallback: true,
     },
     plugins: [
         new HTMLWebpackPlugin({

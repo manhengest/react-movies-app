@@ -14,6 +14,7 @@ const config = function (env: any, argv: { mode: string }): Configuration {
         devtool: isProd ? "source-map" : "eval",
         entry: ["@babel/polyfill", "./index.tsx"],
         output: {
+            publicPath: "/",
             filename: isDev ? "[name].js" : "[name][fullhash].js",
             path: resolve(__dirname, "dist")
         },
