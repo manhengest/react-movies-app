@@ -9,20 +9,35 @@ import { MoviesContainer } from "./containers/MoviesContainer";
 import { Modals } from "./containers/Modals";
 import { RootState } from "./store";
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
+import { NotFound } from "./components/NotFound";
+import { Search } from "./views/Search";
+import { Popular } from "./views/Popular";
+
+
 export const App: React.FunctionComponent = () => {
-    const dispatch = useDispatch()
-    const viewMode = useSelector((state: RootState) => state.appData.viewMode)
-
-    useEffect(() => {
-        dispatch(fetchMovies())
-    }, [])
-
     return (
-        <>
-            { viewMode === "search" ? <MainBanner /> : <DetailedMovieInfoWrapper /> }
-            <MoviesContainer />
-            <Footer />
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Redirect to="/search" />
+                </Route>
+                <Route exact path="/search">
+                    <Popular />
+                </Route>
+                <Route path="/search/:searchQuery">
+                    {/*{ viewMode === "search" ? <MainBanner /> : <DetailedMovieInfoWrapper /> }*/}
+                    <Search />
+                </Route>
+                <Route path="*" component={ NotFound } />
+            </Switch>
+
             <Modals />
-        </>
+        </Router>
     )
 }

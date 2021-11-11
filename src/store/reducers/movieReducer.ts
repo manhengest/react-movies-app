@@ -64,24 +64,37 @@ export const updateSelectedSorting = (title: string) => ({
     payload: title
 })
 
-export const fetchMovies = (limit: number = 9) => async (dispatch: any, getState: any) => {
-    const { selectedGenres } = getState().moviesData;
-    const { selectedSorting } = getState().moviesData;
+export const fetchMovies = (query?: string) => async (dispatch: any, getState: any) => {
+    // const { selectedGenres } = getState().moviesData;
+    // const { selectedSorting } = getState().moviesData;
+    const urlParams = new URLSearchParams(location.search);
+    const genre = urlParams.get('genre');
 
     const filterParams = {
+        search: "",
         searchBy: "",
         sortBy: "",
         filter: "",
         sortOrder: "desc",
-        limit
+        limit: 9
     }
 
-    if (selectedGenres.length) {
+    if (query) {
+        filterParams.searchBy = "title"
+        filterParams.search = query
+    }
+
+    if (!query && genre) {
         filterParams.searchBy = "genres"
-        filterParams.filter = selectedGenres.join(",")
     }
 
-    filterParams.sortBy = selectedSorting
+    if (genre) {
+        filterParams.filter = genre
+    }
+
+    // console.log(query, genre, "fetchMovies");
+
+    // filterParams.sortBy = selectedSorting
 
     const response: MoviesResponse = await axios.get("http://localhost:4000/movies", {
         params: filterParams

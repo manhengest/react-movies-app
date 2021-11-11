@@ -1,32 +1,41 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./genres.scss"
 import { GenreItem } from "../../components/GenreItem";
 import { genres } from "../../utils/common";
 import { addOrRemoveFromArray } from "../../utils/utils";
-import { fetchMovies, updateSelectedGenres } from "../../store/reducers/movieReducer";
-import { RootState } from "../../store";
+import { fetchMovies } from "../../store/reducers/movieReducer";
+import { useHistory } from "react-router-dom";
 
 export const Genres:React.FunctionComponent = () => {
     const dispatch = useDispatch()
-    const selectedGenres = useSelector((state: RootState) => state.moviesData.selectedGenres)
+    const history = useHistory();
+
+    const query = location.pathname.split("/")[2]
+
+    const urlParams = new URLSearchParams(location.search);
+    let selectedGenres: string[] = []
 
     const clickHandler = (title: string, id: number) => {
-        selectGenre(title, id)
-        filterMovies()
+        updateUrl(title, id)
+        dispatch(fetchMovies(query))
     }
 
-    const selectGenre = (title: string, id: number) => {
+    const updateUrl = (title: string, id: number) => {
+        const genre = urlParams.get('genre');
+        const genresToArray = () => genre ? genre.split(",") : [];
+
         if (id !== 1) {
-            const selectedList = addOrRemoveFromArray([...selectedGenres], title);
-            dispatch(updateSelectedGenres(selectedList))
+            selectedGenres = addOrRemoveFromArray(genresToArray(), title);
         } else {
-            dispatch(updateSelectedGenres([]))
+            selectedGenres = []
         }
-    }
 
-    const filterMovies = () => {
-        dispatch(fetchMovies())
+        urlParams.set('genre', selectedGenres.join(","));
+
+        history.push({
+            pathname: `/search/${query}?genre=${selectedGenres.join(",")}`,
+        });
     }
 
     return (
@@ -38,7 +47,6 @@ export const Genres:React.FunctionComponent = () => {
                             id={ genre.id }
                             clickHandler={ clickHandler }
                             title={ genre.title }
-                            activeGenres={ selectedGenres }
                         />
                     </li>
                 )
