@@ -1,3 +1,4 @@
+import { act } from "@testing-library/react";
 import React, { useEffect } from "react";
 
 interface GenreItemProps {
@@ -11,7 +12,9 @@ export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ id, clickHan
     let genre = urlParams.get('genre');
     let isActive = genre?.includes(title) || (!genre && id === 1)
 
-    useEffect(() => {}, [genre]);
+    act(() => {
+        useEffect(() => {}, [genre]);
+    });
 
     return (
         <button

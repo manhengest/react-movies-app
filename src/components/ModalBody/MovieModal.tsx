@@ -9,6 +9,7 @@ import { genres } from "../../utils/common";
 import { createMovie, fetchMovies, getMovie, updateMovie } from "../../store/reducers/movieReducer";
 import { Formik, Form, ErrorMessage } from 'formik';
 import { RootState } from "../../store";
+import { act } from "@testing-library/react";
 
 export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()
@@ -86,15 +87,17 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                 {({ isSubmitting, setFieldValue  }) => {
                     const [movie, setMovie] = useState({});
 
-                    useEffect(() => {
-                        if (modalType === "isEditModalOpened") {
-                            dispatch(getMovie(selectedMovieId)).then((movie) => {
-                                const fields = ["id", "poster_path", "title", "genres", "release_date", "runtime", "overview", "vote_average"];
-                                fields.forEach(field => setFieldValue(field, movie.data[field], false));
-                                setMovie(movie);
-                            });
-                        }
-                    }, []);
+                    act(() => {
+                        useEffect(() => {
+                            if (modalType === "isEditModalOpened") {
+                                dispatch(getMovie(selectedMovieId)).then((movie) => {
+                                    const fields = ["id", "poster_path", "title", "genres", "release_date", "runtime", "overview", "vote_average"];
+                                    fields.forEach(field => setFieldValue(field, movie.data[field], false));
+                                    setMovie(movie);
+                                });
+                            }
+                        }, []);
+                    });
 
                     return (
                         <Form>

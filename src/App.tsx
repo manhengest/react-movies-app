@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import "./assets/styles/main.scss"
 import { Footer } from "./components/Footer";
 import { fetchMovies } from "./store/reducers/movieReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { MainBanner } from "./components/Banner";
 import { DetailedMovieInfoWrapper } from "./containers/DetailedMovieInfoWrapper";
 import { MoviesContainer } from "./containers/MoviesContainer";
 import { Modals } from "./containers/Modals";
-import { RootState } from "./store";
+import store, { RootState } from "./store";
 
 import {
     BrowserRouter as Router,
@@ -20,7 +20,7 @@ import { Search } from "./views/Search";
 import { Popular } from "./views/Popular";
 
 
-export const App: React.FunctionComponent = () => {
+const App:React.FunctionComponent = () => {
     return (
         <Router>
             <Switch>
@@ -39,5 +39,15 @@ export const App: React.FunctionComponent = () => {
 
             <Modals />
         </Router>
+    )
+}
+
+export const AppWrapper:React.FunctionComponent = () => {
+    return (
+        <React.StrictMode>
+            <Provider store={ store }>
+                <App />
+            </Provider>
+        </React.StrictMode>
     )
 }

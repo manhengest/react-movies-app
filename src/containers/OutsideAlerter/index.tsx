@@ -1,25 +1,28 @@
+import { act } from "@testing-library/react";
 import React, { PropsWithChildren, RefObject, useEffect, useRef } from "react";
 
 /**
  * Hook that alerts clicks outside of the passed ref
  */
 const useOutsideAlerter = (ref: RefObject<HTMLElement>, fn: () => void) => {
-    useEffect(() => {
-        /**
-         * Alert if clicked on outside of element
-         */
-        const handleClickOutside = (event: any) => {
-            if (ref.current && !ref.current.contains(event.target)) {
-                fn()
+    act(() => {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            const handleClickOutside = (event: any) => {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    fn()
+                }
             }
-        }
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                // Unbind the event listener on clean up
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    });
 }
 
 /**

@@ -1,7 +1,7 @@
 import { APP_TYPES } from "../types";
 import { Movie, ReduxAction } from "../../components/MovieCard/interface";
 
-const initialState = {
+export const initialState = {
     isAddModalOpened: false,
     isEditModalOpened: false,
     isDeleteModalOpened: false,
