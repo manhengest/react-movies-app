@@ -1,5 +1,6 @@
 import { act } from "@testing-library/react";
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface GenreItemProps {
     clickHandler(title: string, id: number): void,
@@ -9,11 +10,12 @@ interface GenreItemProps {
 
 export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ id, clickHandler, title }) => {
     const urlParams = new URLSearchParams(location.search)
-    let genre = urlParams.get('genre');
-    let isActive = genre?.includes(title) || (!genre && id === 1)
+    const genre = urlParams.get("genre");
+    const isActive = genre?.includes(title) || (!genre && id === 1)
+    let url = useLocation();
 
     act(() => {
-        useEffect(() => {}, [genre]);
+        useEffect(() => {}, [url]);
     });
 
     return (

@@ -19,7 +19,7 @@ export const Search:React.FunctionComponent = () => {
     const submit = () => {
         const genre = urlParams.get('genre');
         history.push({
-            pathname: `/search/${searchQuery}?genre=${genre}`,
+            pathname: `/search/${searchQuery}${genre ? "?genre=" + genre : ""}`,
         });
         dispatch(fetchMovies(searchQuery))
         setSearchQuery('')
