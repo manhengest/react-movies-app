@@ -11,7 +11,7 @@ export const DeleteModal:React.FunctionComponent = () => {
 
     const handleDelete = () => {
         dispatch(deleteMovie(selectedMovieId)).then(() => {
-            dispatch(fetchMovies())
+            // dispatch(fetchMovies())
         })
         dispatch(toggleModal("isDeleteModalOpened", false))
 
@@ -29,6 +29,7 @@ export const DeleteModal:React.FunctionComponent = () => {
                     clickHandler={ handleDelete }
                     title="Confirm"
                     buttonType="primary-button"
+                    additionalClass="delete-movie"
                 />
             </div>
         </div>

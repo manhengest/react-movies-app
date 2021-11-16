@@ -34,7 +34,7 @@ export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ i
                 <ul>
                     <li>
                         <button
-                            className="movie-card__context-menu-btn"
+                            className="movie-card__context-menu-btn movie-card__context-menu-btn_edit"
                             onClick={ onEditDialogOpen }
                         >
                             Edit
@@ -42,7 +42,7 @@ export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ i
                     </li>
                     <li>
                         <button
-                            className="movie-card__context-menu-btn"
+                            className="movie-card__context-menu-btn movie-card__context-menu-btn_delete"
                             onClick={ onDeleteDialogOpen }
                         >
                             Delete

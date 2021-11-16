@@ -18,6 +18,7 @@ export const PrimaryHeader:React.FunctionComponent = () => {
                 clickHandler={ openAddMovieModal }
                 title={ "+ add movie" }
                 buttonType="transparent-button"
+                additionalClass="add-movie-btn"
             />
         </header>
     )

@@ -117,7 +117,7 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                                         name="poster_path"
                                         id="edit-movie-poster-url"
                                     />
-                                    <div className="relative">
+                                    <div className="relative movie-genre">
                                         <CustomSelect
                                             id="edit-movie-genres"
                                             label="Genre"
@@ -186,6 +186,7 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                                     type="submit"
                                     disabled={ isSubmitting }
                                     buttonType="primary-button"
+                                    additionalClass="submit-movie-modal"
                                 />
                             </div>
                         </Form>
