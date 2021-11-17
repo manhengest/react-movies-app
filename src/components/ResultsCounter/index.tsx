@@ -7,7 +7,7 @@ export const ResultsCounter:React.FunctionComponent = () => {
 
     return (
         <div className="filter__results">
-            <span className="filter__results-text"><span>{ totalCount }</span> movies found</span>
+            <span className="filter__results-text"><span className="filter__results-quantity">{ totalCount }</span> movies found</span>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { MOVIES_TYPES } from "../types";
 import axios from "axios";
 import { Movie, MoviesResponse, ReduxAction } from "../../components/MovieCard/interface";
 
-const initialState = {
+export const initialState = {
     movies: [],
     total: 0,
     selectedGenres: [],

@@ -34,7 +34,7 @@ export const Genres:React.FunctionComponent = () => {
         urlParams.set('genre', selectedGenres.join(","));
 
         history.push({
-            pathname: `/search/${query}?genre=${selectedGenres.join(",")}`,
+            pathname: `/search/${query}${selectedGenres.length ? "?genre=" + selectedGenres.join(",") : ""}`,
         });
     }
 
