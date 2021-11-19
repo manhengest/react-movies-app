@@ -61,9 +61,9 @@ export const Modal:React.FunctionComponent<ModalProps> = ({ variable }) => {
                         <span className="modal__title">{ modalTitle.toUpperCase() }</span>
                     </div>
 
-                    { (variable === "isAddModalOpened" || variable === "isEditModalOpened") && <MovieModal modalType={ variable } /> }
-                    { variable === "isDeleteModalOpened" && <DeleteModal /> }
-                    { variable === "isSuccessModalOpened" && <SuccessModal /> }
+                    <MovieModal modalType={ variable } />
+                    <DeleteModal modalType={ variable } />
+                    <SuccessModal modalType={ variable } />
                 </div>
             </OutsideAlerter>
         </div>

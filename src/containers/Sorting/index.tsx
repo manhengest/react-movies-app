@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./sorting.scss"
 import { CustomSelect } from "../../components/Forms/CustomSelect";
 import { useDispatch } from "react-redux";
-import { fetchMovies, updateSelectedSorting } from "../../store/reducers/movieReducer";
+import { updateSelectedSorting } from "../../store/reducers/movieReducer";
+import { fetchMovies } from "../../store/asyncActions";
 
 export const Sorting:React.FunctionComponent = () => {
     const dispatch = useDispatch()

@@ -5,13 +5,13 @@ import { SearchField } from "../../components/SearchField";
 import { Button } from "../../components/Button";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchMovies } from "../../store/reducers/movieReducer";
+import { fetchMovies } from "../../store/asyncActions";
 
 export const Search:React.FunctionComponent = () => {
     const dispatch = useDispatch()
     const history = useHistory();
-    const [searchQuery, setSearchQuery] = useState<string>("");
     const urlParams = new URLSearchParams(location.search);
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value)

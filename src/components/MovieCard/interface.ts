@@ -7,23 +7,21 @@ export enum Genre {
 }
 
 export interface Movie {
-    id: number,
+    id?: number,
     poster_path: string,
     title: string,
     genres: string[],
     release_date: string,
-    runtime: number,
+    runtime: number | "",
     overview: string,
-    vote_average: number
+    vote_average: number | ""
 }
 
 export interface MoviesResponse {
-    data: {
-        data: Movie[],
-        limit: number,
-        offset: number,
-        totalAmount: number
-    }
+    data: Movie[],
+    limit: number,
+    offset: number,
+    totalAmount: number
 }
 
 export interface ReduxAction {

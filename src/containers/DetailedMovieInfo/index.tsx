@@ -23,13 +23,7 @@ export const DetailedMovieInfo:React.FunctionComponent = () => {
             <div className="detailed-movie-info__info-wrap">
                 <div className="detailed-movie-info__title-wrap">
                     <PrimaryTitle title={ data.title } />
-                    {
-                        data.vote_average ?
-                            <Rating
-                                rating={ data.vote_average }
-                                additionalClass="detailed-movie-info__rating"
-                            /> : null
-                    }
+                    { !!data.vote_average && <Rating rating={ data.vote_average } additionalClass="detailed-movie-info__rating" /> }
                 </div>
                 <span className="detailed-movie-info__genre">
                     <GenresList genres={ data.genres } />

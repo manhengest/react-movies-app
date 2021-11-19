@@ -4,16 +4,14 @@ import "./genres.scss"
 import { GenreItem } from "../../components/GenreItem";
 import { genres } from "../../utils/common";
 import { addOrRemoveFromArray } from "../../utils/utils";
-import { fetchMovies } from "../../store/reducers/movieReducer";
 import { useHistory } from "react-router-dom";
+import { fetchMovies } from "../../store/asyncActions";
 
 export const Genres:React.FunctionComponent = () => {
     const dispatch = useDispatch()
     const history = useHistory();
-
-    const query = location.pathname.split("/")[2]
-
     const urlParams = new URLSearchParams(location.search);
+    const query = location.pathname.split("/")[2]
     let selectedGenres: string[] = []
 
     const clickHandler = (title: string, id: number) => {

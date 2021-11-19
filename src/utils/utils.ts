@@ -3,7 +3,7 @@ export const movieDurationConverter = (duration: number): string => {
     const clearedHours = Math.floor(hours);
     const minutes = (hours - clearedHours) * 60;
     const clearedMinutes = Math.round(minutes);
-    return clearedMinutes ? `${clearedHours}h ${clearedMinutes}min` : `${clearedHours}h`
+    return clearedMinutes ? `${clearedHours ? clearedHours + "h " : ""}${clearedMinutes}min` : `${clearedHours}h`
 }
 
 export const addOrRemoveFromArray = (array: any[], newItem: any) => {
@@ -11,3 +11,9 @@ export const addOrRemoveFromArray = (array: any[], newItem: any) => {
 
     return array
 }
+
+// const { searchQuery } = useParams()
+// const match = useRouteMatch();
+// history.push(
+//     generatePath(match.path, { ...match.params, ...searchParams })
+// )
