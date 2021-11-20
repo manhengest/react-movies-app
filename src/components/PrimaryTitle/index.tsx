@@ -1,5 +1,5 @@
 import React from "react";
-import "./primary-title.scss"
+import style from "./primary-title.module.scss"
 
 interface PrimaryTitleProps {
     title: string,
@@ -8,6 +8,6 @@ interface PrimaryTitleProps {
 
 export const PrimaryTitle:React.FunctionComponent<PrimaryTitleProps> = ({ title, additionalClass }) => {
     return (
-        <span className={ `primary-title ${ additionalClass ? "primary-title_" + additionalClass : "" }` }>{ title }</span>
+        <span className={ `${ style["primary-title"] } ${ additionalClass }` }>{ title }</span>
     )
 }

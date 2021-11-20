@@ -1,5 +1,6 @@
 import { APP_TYPES } from "../types";
-import { Movie, ReduxAction } from "../../components/MovieCard/interface";
+import { Movie } from "../../components/MovieCard/interface";
+import { AnyAction } from "redux";
 
 export const initialState = {
     isAddModalOpened: false,
@@ -11,15 +12,9 @@ export const initialState = {
     detailedViewData: {},
 }
 
-export default function appReducer(state: typeof initialState = initialState, action: ReduxAction) {
+export default function appReducer(state: typeof initialState = initialState, action: AnyAction) {
     switch (action.type) {
         case APP_TYPES.TOGGLE_MODAL: {
-            if (action.payload.status) {
-                document.documentElement.classList.add("no-scroll")
-            } else {
-                document.documentElement.classList.remove("no-scroll")
-            }
-
             return {
                 ...state,
                 [action.payload.variable]: action.payload.status,

@@ -1,5 +1,5 @@
 import React from "react";
-import "./movie-card.scss"
+import style from "./movie-card.module.scss"
 import { Movie } from "./interface"
 import { MovieCardContextMenu } from "../MovieCardContextMenu";
 import { useDispatch } from "react-redux";
@@ -22,27 +22,27 @@ export const MovieCard:React.FunctionComponent<Movie> = ({ id, title, genres, re
     }
 
     return (
-        <div className="movie-card">
+        <div className={ style["movie-card"] }>
             <MovieCardContextMenu id={ id } />
             <a
                 onClick={ handleClick }
-                className="movie-card__poster"
+                className={ style["movie-card__poster"] }
                 href="#"
             >
-                <img className="movie-card__poster-img" src={ poster_path } alt={ title }/>
+                <img className={ style["movie-card__poster-img"] } src={ poster_path } alt={ title }/>
             </a>
-            <div className="movie-card__title-wrap">
+            <div className={ style["movie-card__title-wrap"] }>
                 <button
                     onClick={ handleClick }
-                    className="movie-card__title"
+                    className={ style["movie-card__title"] }
                 >
                     { title }
                 </button>
-                <span className="movie-card__year">
+                <span className={ style["movie-card__year"] }>
                     <ReleaseDate releaseDate={ release_date } />
                 </span>
             </div>
-            <span className="movie-card__genre">
+            <span className={ style["movie-card__genre"] }>
                 <GenresList genres={ genres } />
             </span>
         </div>

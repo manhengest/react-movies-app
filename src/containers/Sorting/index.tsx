@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sorting.scss"
+import style from "./sorting.module.scss"
 import { CustomSelect } from "../../components/Forms/CustomSelect";
 import { useDispatch } from "react-redux";
 import { updateSelectedSorting } from "../../store/reducers/movieReducer";
@@ -36,20 +36,20 @@ export const Sorting:React.FunctionComponent = () => {
     }
 
     return (
-        <div className="sorting">
-            <span className="sorting__title">Sort by</span>
+        <div className={ style.sorting }>
+            <span className={ style.sorting__title }>Sort by</span>
             <CustomSelect
                 id="sort-by"
                 placeholder={ placeholder }
                 theme="as-button"
-                buttonClass="sorting__trigger"
+                buttonClass={ style.sorting__trigger }
             >
                 <ul>
                     {
                         sortBy.map((sortByItem: { title: string, value: string, id: number }) => (
                             <li key={ sortByItem.id }>
                                 <button
-                                    className="sorting__btn"
+                                    className={ style.sorting__btn }
                                     onClick={ () => clickHandler(sortByItem.value, sortByItem.title) }
                                 >
                                     { sortByItem.title }

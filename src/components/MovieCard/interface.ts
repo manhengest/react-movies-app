@@ -23,8 +23,3 @@ export interface MoviesResponse {
     offset: number,
     totalAmount: number
 }
-
-export interface ReduxAction {
-    type: string,
-    payload: any
-}

@@ -7,6 +7,9 @@
     "dev": "webpack-dev-server --env development --mode development",
     "build": "webpack --env production --mode production",
     "test": "jest",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
     "test:watch": "npm test -- --watch",
     "cypress": "npx cypress open",
     "test:cypress": "start-server-and-test start http://localhost:8000 cypress"
@@ -61,6 +64,8 @@
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.23.0",
     "formik": "^2.2.9",
+    "next": "^12.0.4",
+    "next-redux-wrapper": "^7.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",

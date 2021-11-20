@@ -1,0 +1,56 @@
+@use "../../assets/styles/variables" as *;
+@use "../../assets/styles/mixins" as *;
+
+.movie-card {
+    margin-bottom: 50px;
+    flex-basis: 33%;
+    max-width: 322px;
+    position: relative;
+    &:hover {
+        [class*="movie-card-actions"] {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    &__poster {
+        display: block;
+        margin-bottom: 20px;
+    }
+    &__title-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    &__title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.7;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &__year {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.7;
+        border: 1px solid #979797;
+        border-radius: 4px;
+        padding: 4px 8px;
+    }
+    &__genre {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.5;
+    }
+}

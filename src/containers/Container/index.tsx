@@ -1,9 +1,9 @@
 import React from "react";
-import "./container.scss"
+import style from "./container.module.scss"
 
 export const Container:React.FunctionComponent = (props) => {
     return (
-        <div className="container">
+        <div className={ style.container }>
             { props.children }
         </div>
     )

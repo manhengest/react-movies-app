@@ -1,5 +1,5 @@
 import React from "react";
-import "./primary-header.scss"
+import style from "./primary-header.module.scss"
 import { Logo } from "../Logo";
 import { Button } from "../Button";
 import { useDispatch } from "react-redux";
@@ -12,8 +12,8 @@ export const PrimaryHeader:React.FunctionComponent = () => {
     }
 
     return (
-        <header className="primary-header">
-            <Logo type={ "bold" } />
+        <header className={ style["primary-header"] }>
+            <Logo additionalClass={ style.logo_bold } />
             <Button
                 clickHandler={ openAddMovieModal }
                 title={ "+ add movie" }

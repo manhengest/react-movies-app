@@ -1,5 +1,7 @@
+import { AnyAction } from 'redux';
+import { HYDRATE } from 'next-redux-wrapper';
 import { MOVIES_TYPES } from "../types";
-import { Movie, ReduxAction } from "../../components/MovieCard/interface";
+import { Movie } from "../../components/MovieCard/interface";
 
 export const initialState = {
     movies: [],
@@ -8,8 +10,10 @@ export const initialState = {
     selectedSorting: "release_date"
 }
 
-export default function movieReducer(state: typeof initialState = initialState, action: ReduxAction) {
+export default function movieReducer(state: typeof initialState = initialState, action: AnyAction) {
     switch (action.type) {
+        case HYDRATE:
+            return {...state, ...action.payload.moviesData};
         case MOVIES_TYPES.LOAD_MOVIES: {
             return {
                 ...state,

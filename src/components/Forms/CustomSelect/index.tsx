@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CustomLabel } from "../CustomLabel";
 import { OutsideAlerter } from "../../../containers/OutsideAlerter";
+import style from "./custom-select.module.scss"
 
 interface CustomSelectProps {
     id: string,
@@ -31,21 +32,21 @@ export const CustomSelect:React.FunctionComponent<CustomSelectProps> = (
     }
 
     return (
-        <div className={ `custom-select ${ label && "custom-field" }` }>
+        <div className={ `${ style["custom-select"] } ${ label ? style["custom-field"] : "" }` }>
             { label && <CustomLabel id={ id } label={ label } /> }
 
             <OutsideAlerter fn={ closeDropdown }>
-                <div className="custom-select__dropdown-wrap">
+                <div className={ style["custom-select__dropdown-wrap"] }>
                     <button
                         type="button"
-                        className={`custom-input custom-select__trigger ${ theme } ${ buttonClass }`}
+                        className={`custom-input ${ style["custom-select__trigger"] } ${ style[theme] } ${ buttonClass }`}
                         onClick={ toggleDropdown }
                     >
                         { placeholder }
                     </button>
                     <div
                         onClick={ handleChildClick }
-                        className={ `custom-select__dropdown ${ isDropdownOpen ? "active" : "" }` }
+                        className={ `${ style["custom-select__dropdown"] } ${ isDropdownOpen ? style.active : "" }` }
                     >
                         { children }
                     </div>

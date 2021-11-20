@@ -4,7 +4,7 @@ import { getMovies } from "../api/movies";
 import { AxiosResponse } from "axios";
 import { ThunkDispatch } from "redux-thunk";
 import { Action } from "redux";
-import { RootState } from "./index";
+import { RootState } from "./reducers/rootReducer";
 
 export const fetchMovies = (query?: string) => {
     const urlParams = new URLSearchParams(location.search);

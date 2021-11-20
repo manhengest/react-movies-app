@@ -1,5 +1,5 @@
 import React from "react";
-import "./search-field.scss"
+import style from "./search-field.module.scss"
 
 interface SearchFieldProps {
     searchQuery: string,
@@ -15,7 +15,7 @@ export const SearchField:React.FunctionComponent<SearchFieldProps> = ({ searchQu
             onKeyPress={ submitHandler }
             type="text"
             placeholder="What do you want to watch?"
-            className="search-field"
+            className={ style["search-field"] }
         />
     )
 }

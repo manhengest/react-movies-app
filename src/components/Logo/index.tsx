@@ -1,14 +1,14 @@
 import React from "react";
-import "./logo.scss"
+import style from "./logo.module.scss"
 
-interface LogoTypes {
-    type: "bold" | "regular"
+interface LogoProps {
+    additionalClass: string
 }
 
-export const Logo:React.FunctionComponent<LogoTypes> = ({ type = "bold" }) => {
+export const Logo:React.FunctionComponent<LogoProps> = ({ additionalClass }) => {
     return (
-        <a href="#" className={ `logo logo_${type}` }>
+        <div className={ `${ style.logo } ${ additionalClass }` }>
             <span>netflix</span>roulette
-        </a>
+        </div>
     )
 }

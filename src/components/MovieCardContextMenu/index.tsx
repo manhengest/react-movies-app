@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
+import style from "./context-menu.module.scss"
 
-export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ id }) => {
+export const MovieCardContextMenu:React.FunctionComponent<{ id?: number }> = ({ id }) => {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const openDropdown = () => setIsOpen(true)
@@ -18,23 +19,23 @@ export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ i
     }
 
     return (
-        <div className="movie-card__context-menu">
+        <div className={ `${ style["movie-card__context-menu"] } movie-card-actions` }>
             <button
-                className="movie-card__context-menu-open-btn"
+                className={ style["movie-card__context-menu-open-btn"] }
                 onClick={ openDropdown }
             />
             <div
-                className={ `movie-card__context-menu-dropdown ${ isOpen ? "active" : "" }` }
+                className={ `${ style["movie-card__context-menu-dropdown"] } ${ isOpen ? style["active"] : "" }` }
                 onMouseLeave={ handleMouseLeave }
             >
                 <button
-                    className="movie-card__context-menu-close-btn close-btn"
+                    className={ `${ style["movie-card__context-menu-close-btn"] } close-btn` }
                     onClick={ closeDropdown }
                 />
                 <ul>
                     <li>
                         <button
-                            className="movie-card__context-menu-btn movie-card__context-menu-btn_edit"
+                            className={ `${ style["movie-card__context-menu-btn"] } movie-card__context-menu-btn_edit` }
                             onClick={ onEditDialogOpen }
                         >
                             Edit
@@ -42,7 +43,7 @@ export const MovieCardContextMenu:React.FunctionComponent<{ id: number }> = ({ i
                     </li>
                     <li>
                         <button
-                            className="movie-card__context-menu-btn movie-card__context-menu-btn_delete"
+                            className={ `${ style["movie-card__context-menu-btn"] } movie-card__context-menu-btn_delete` }
                             onClick={ onDeleteDialogOpen }
                         >
                             Delete
