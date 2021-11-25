@@ -1,8 +1,6 @@
-@use "~styles/variables" as *;
+@use "../../assets/styles/variables" as *;
 
 .detailed-movie-info {
-    background: $mainBg;
-    padding-bottom: 30px;
     &__inner {
         display: flex;
     }
@@ -13,9 +11,6 @@
     &__title-wrap {
         display: flex;
         align-items: center;
-    }
-    &__rating {
-        margin-left: 25px;
     }
     &__genre {
         display: block;
@@ -47,5 +42,8 @@
         color: #FFFFFF;
         mix-blend-mode: normal;
         opacity: 0.5;
+    }
+    &__rating {
+        margin-left: 25px;
     }
 }

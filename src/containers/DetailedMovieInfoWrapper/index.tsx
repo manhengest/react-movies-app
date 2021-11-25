@@ -1,5 +1,5 @@
 import React from "react";
-import "./detailed-movie-info.scss"
+
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { DetailedMovieInfo } from "../DetailedMovieInfo";
 import { Container } from "../Container";

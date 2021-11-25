@@ -1,5 +1,6 @@
 import React from "react";
-import "./rating.scss";
+
+import style from "./rating.module.scss";
 
 interface RatingProps {
     rating: number,
@@ -8,8 +9,8 @@ interface RatingProps {
 
 export const Rating:React.FunctionComponent<RatingProps> = ({ rating, additionalClass }) => {
     return (
-        <div className={`rating ${additionalClass}`}>
-            <span className="rating__number">
+        <div className={`${ style.rating } ${ additionalClass }`}>
+            <span className={ style.rating__number }>
                 { rating }
             </span>
         </div>

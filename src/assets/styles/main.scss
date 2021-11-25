@@ -1,4 +1,5 @@
 @use "fonts";
+@use "variables" as *;
 
 * {
     margin: 0;
@@ -82,4 +83,9 @@ img {
     &[type="date"]::-webkit-calendar-picker-indicator {
         background: url("../icons/calendar-icon.svg") no-repeat 95% center;
     }
+}
+
+.detailed-movie-info {
+    background: $mainBg;
+    padding-bottom: 30px;
 }

@@ -5,13 +5,14 @@ import { ParsedUrlQuery } from "node:querystring";
 
 import { MoviesResponse } from "../components/MovieCard/interface";
 import { updateMovies, updateMoviesCount } from "./reducers/movieReducer";
-import { getMovies } from "../api/movies";
+import { getMovie, getMovies } from "../api/movies";
 import { RootState } from "./reducers/rootReducer";
+import { setDetailedViewData } from "./reducers/appReducer";
 
 export const fetchMovies = (query?: ParsedUrlQuery) => {
     const searchQuery = query?.query as string[];
     const genres = query?.genres as string;
-    const sortBy = query?.sortBy;
+    const sortBy = query?.sortBy || "release_date";
 
     const filterParams = {
         search: "",
@@ -41,3 +42,11 @@ export const fetchMovies = (query?: ParsedUrlQuery) => {
     }
 }
 
+export const fetchMovieDetails = (id: number) => {
+    return async function(dispatch: ThunkDispatch<RootState, void, Action>) {
+        return getMovie(id).then((response: AxiosResponse<any>) => {
+            const { id, title, genres, release_date, poster_path, runtime, overview, vote_average } = response.data
+            dispatch(setDetailedViewData({ id, title, genres, release_date, poster_path, runtime, overview, vote_average }))
+        })
+    }
+}
