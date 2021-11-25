@@ -14,16 +14,13 @@ export const Genres:React.FunctionComponent = () => {
     const dispatch = useDispatch()
     const { updateUrl } = useUpdatedUrl()
     const router = useRouter()
-
-    let genresFromUrl = router.query?.genres as string | null
-    let selectedGenres: string[]
-
     const genresToArray = (genres: string | null) => genres ? genres.split(",") : [];
 
-    selectedGenres = genresToArray(genresFromUrl)
+    let genresFromUrl = router.query?.genres as string | null
+    let selectedGenres = genresToArray(genresFromUrl)
 
     const clickHandler = (title: string, id: number) => {
-        selectedGenres = addOrRemoveFromArray(selectedGenres, title);
+        selectedGenres = addOrRemoveFromArray(selectedGenres, title)
         updateUrl("", selectedGenres.join(",")).then((query) => dispatch(fetchMovies(query)))
     }
 

@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import style from "./sorting.module.scss"
-import { CustomSelect } from "../../components/Forms/CustomSelect";
 import { useDispatch } from "react-redux";
-import { updateSelectedSorting } from "../../store/reducers/movieReducer";
+
+import { CustomSelect } from "../../components/Forms/CustomSelect";
 import { fetchMovies } from "../../store/asyncActions";
+import useUpdatedUrl from "../../hooks/useUpdatedUrl";
+
+import style from "./sorting.module.scss"
 
 export const Sorting:React.FunctionComponent = () => {
     const dispatch = useDispatch()
+    const { updateUrl } = useUpdatedUrl()
+
     const sortBy = [
         {
             title: "Release date",
@@ -22,17 +26,8 @@ export const Sorting:React.FunctionComponent = () => {
     const [placeholder, setPlaceholder] = useState("Release date")
 
     const clickHandler = (value: string, title: string) => {
-        selectSorting(value, title)
-        filterMovies()
-    }
-
-    const selectSorting = (value: string, title: string) => {
         setPlaceholder(title);
-        dispatch(updateSelectedSorting(value))
-    }
-
-    const filterMovies = () => {
-        dispatch(fetchMovies())
+        updateUrl("", "", value).then((query) => dispatch(fetchMovies(query)))
     }
 
     return (

@@ -12,12 +12,11 @@ export const fetchMovies = (query?: ParsedUrlQuery) => {
     const searchQuery = query?.query as string[];
     const genres = query?.genres as string;
     const sortBy = query?.sortBy;
-    const movieID = query?.movieId;
 
     const filterParams = {
         search: "",
         searchBy: "",
-        sortBy: "",
+        sortBy,
         filter: "",
         sortOrder: "desc",
         limit: 9

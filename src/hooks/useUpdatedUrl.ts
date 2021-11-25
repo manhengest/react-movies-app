@@ -3,29 +3,32 @@ import { useRouter } from "next/router";
 const useUpdatedUrl = () => {
     const router = useRouter()
 
-    const updateUrl = (
-        searchQuery?,
-        genres = router.query?.genres,
-        sortBy?,
-        movieID?): Promise<any> => {
+    const updateUrl = (searchQuery?, genres?, sortBy?): Promise<any> => {
         return new Promise(resolve => {
             // doesnt work as default parameter
             if (!searchQuery) {
-                searchQuery = router.query?.searchQuery
+                searchQuery = (router.query?.query && router.query?.query.length) ? router.query?.query[0] : ""
+            }
+            if (!genres) {
+                genres = router.query?.genres
+            }
+            if (!sortBy) {
+                sortBy = router.query?.sortBy
             }
 
             router.push(
                 {
                     pathname: "/search/[[...query]]",
-                    query: { searchQuery, genres },
+                    query: { genres, sortBy },
                 },
-                `/search/${searchQuery}${genres ? "?genres=" + genres : ""}`,
+                `/search/${searchQuery}${genres ? "?genres=" + genres : ""}${sortBy ? "?sortBy=" + sortBy : ""}`,
                 { shallow: true }
             )
 
             resolve({
-                query: [ searchQuery ],
-                genres
+                query: [ searchQuery ? searchQuery : "" ],
+                genres,
+                sortBy
             })
         })
     }
