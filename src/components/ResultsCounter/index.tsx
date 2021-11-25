@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+
+import { RootState } from "../../store/reducers/rootReducer";
+
 import style from "./results-counter.module.scss"
 
 export const ResultsCounter:React.FunctionComponent = () => {

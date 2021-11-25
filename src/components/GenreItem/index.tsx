@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
+
 import style from "./genre-btn.module.scss"
 
 interface GenreItemProps {

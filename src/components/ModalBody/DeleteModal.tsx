@@ -2,9 +2,9 @@ import React from "react";
 import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
-import { RootState } from "../../store";
 import { deleteMovie } from "../../api/movies";
 import { fetchMovies } from "../../store/asyncActions";
+import { RootState } from "../../store/reducers/rootReducer";
 
 export const DeleteModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()

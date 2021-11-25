@@ -1,14 +1,19 @@
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { AxiosResponse } from "axios";
+import { ParsedUrlQuery } from "node:querystring";
+
 import { MoviesResponse } from "../components/MovieCard/interface";
 import { updateMovies, updateMoviesCount } from "./reducers/movieReducer";
 import { getMovies } from "../api/movies";
-import { AxiosResponse } from "axios";
-import { ThunkDispatch } from "redux-thunk";
-import { Action } from "redux";
 import { RootState } from "./reducers/rootReducer";
 
-export const fetchMovies = (query?: string) => {
-    const urlParams = new URLSearchParams(location.search);
-    const genre = urlParams.get('genre');
+export const fetchMovies = (query?: ParsedUrlQuery) => {
+    const searchQuery = query?.query as string[];
+    const genres = query?.genres as string;
+    const sortBy = query?.sortBy;
+    const movieID = query?.movieId;
+
     const filterParams = {
         search: "",
         searchBy: "",
@@ -17,19 +22,20 @@ export const fetchMovies = (query?: string) => {
         sortOrder: "desc",
         limit: 9
     }
-    if (query) {
+
+    if (searchQuery && searchQuery.length) {
         filterParams.searchBy = "title"
-        filterParams.search = query
+        filterParams.search = searchQuery.join(",")
     }
-    if (!query && genre) {
+    if (!(searchQuery && searchQuery.length) && genres) {
         filterParams.searchBy = "genres"
     }
-    if (genre) {
-        filterParams.filter = genre
+    if (genres) {
+        filterParams.filter = genres
     }
 
-    return (dispatch: ThunkDispatch<RootState, void, Action>) => {
-        getMovies(filterParams).then((response: AxiosResponse<MoviesResponse>) => {
+    return async function(dispatch: ThunkDispatch<RootState, void, Action>) {
+        return getMovies(filterParams).then((response: AxiosResponse<MoviesResponse>) => {
             dispatch(updateMovies(response.data.data))
             dispatch(updateMoviesCount(response.data.totalAmount))
         })

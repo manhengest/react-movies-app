@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import { PrimaryTitle } from "../../components/PrimaryTitle";
 import { Rating } from "../../components/Rating";
-import { movieDurationConverter } from "../../utils/utils";
-import { useSelector } from "react-redux";
+import { movieDurationConverter } from "../../utils";
 import { GenresList } from "../../components/GenresList";
 import { ReleaseDate } from "../../components/ReleaseDate";
-import { RootState } from "../../store";
+import { RootState } from "../../store/reducers/rootReducer";
 
 export const DetailedMovieInfo:React.FunctionComponent = () => {
     const data = useSelector((state: RootState) => state.appData.detailedViewData)

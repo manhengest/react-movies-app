@@ -9,4 +9,4 @@ const composedEnhancer = composeWithDevTools(
 )
 
 const makeStore = (context: Context) => createStore(rootReducer, composedEnhancer);
-export const wrapper = createWrapper<Store<RootState>>(makeStore, {debug: true});
+export const wrapper = createWrapper<Store<RootState>>(makeStore, {debug: false});

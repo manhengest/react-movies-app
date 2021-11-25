@@ -1,3 +1,13 @@
+import { Genre } from "../components/MovieCard/interface";
+
+export const genres = Object
+    .values(Genre)
+    .map((title, _id) => ({
+        title,
+        id: _id + 1,
+        active: !_id
+    }))
+
 export const movieDurationConverter = (duration: number): string => {
     const hours = (duration / 60);
     const clearedHours = Math.floor(hours);
@@ -11,9 +21,3 @@ export const addOrRemoveFromArray = (array: any[], newItem: any) => {
 
     return array
 }
-
-// const { searchQuery } = useParams()
-// const match = useRouteMatch();
-// history.push(
-//     generatePath(match.path, { ...match.params, ...searchParams })
-// )

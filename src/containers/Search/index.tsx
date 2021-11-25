@@ -1,30 +1,24 @@
 import React, { useState } from "react";
-import style from "./search.module.scss"
+import { useDispatch } from "react-redux";
+
 import { PrimaryTitle } from "../../components/PrimaryTitle";
 import { SearchField } from "../../components/SearchField";
 import { Button } from "../../components/Button";
-// import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { fetchMovies } from "../../store/asyncActions";
 
-import {useRouter} from "next/router";
+import style from "./search.module.scss"
+import useUpdatedUrl from "../../hooks/useUpdatedUrl";
 
 export const Search:React.FunctionComponent = () => {
-    const router = useRouter();
     const dispatch = useDispatch()
-    // const history = useHistory();
-    const urlParams = new URLSearchParams(router.pathname);
+    const { updateUrl } = useUpdatedUrl()
     const [searchQuery, setSearchQuery] = useState<string>("");
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value)
     }
     const submit = () => {
-        const genre = urlParams.get('genre');
-        // history.push({
-        //     pathname: `/search/${searchQuery}${genre ? "?genre=" + genre : ""}`,
-        // });
-        dispatch(fetchMovies(searchQuery))
+        updateUrl(searchQuery).then((query) => dispatch(fetchMovies(query)))
         setSearchQuery('')
     }
     const submitHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {

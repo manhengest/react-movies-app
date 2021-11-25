@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form, ErrorMessage } from 'formik';
+import { AxiosResponse } from "axios";
+
+import { act } from "@testing-library/react";
 import { LabeledInput } from "../Forms/LabeledInput";
 import { CustomSelect } from "../Forms/CustomSelect";
 import { Button } from "../Button";
 import { CustomCheckbox } from "../Forms/CustomCheckbox";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
-import { genres } from "../../utils/common";
-import { Formik, Form, ErrorMessage } from 'formik';
-import { RootState } from "../../store";
-import { act } from "@testing-library/react";
+import { genres } from "../../utils";
 import { addMovie, getMovie, updateMovie } from "../../api/movies";
 import { fetchMovies } from "../../store/asyncActions";
 import { Movie, MoviesResponse } from "../MovieCard/interface";
-import { AxiosResponse } from "axios";
+import { RootState } from "../../store/reducers/rootReducer";
 
 export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()
