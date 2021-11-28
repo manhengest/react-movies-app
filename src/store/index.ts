@@ -1,15 +1,12 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, Store } from 'redux'
+import {createWrapper, Context} from 'next-redux-wrapper';
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import rootReducer from './reducers/rootReducer'
+import { rootReducer, RootState } from './reducers/rootReducer'
 
 const composedEnhancer = composeWithDevTools(
     applyMiddleware(thunkMiddleware)
 )
 
-const store = createStore(rootReducer, composedEnhancer)
-
-export default store
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+const makeStore = (context: Context) => createStore(rootReducer, composedEnhancer);
+export const wrapper = createWrapper<Store<RootState>>(makeStore, {debug: false});

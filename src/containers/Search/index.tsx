@@ -1,27 +1,24 @@
 import React, { useState } from "react";
-import "./search.scss"
+import { useDispatch } from "react-redux";
+
 import { PrimaryTitle } from "../../components/PrimaryTitle";
 import { SearchField } from "../../components/SearchField";
 import { Button } from "../../components/Button";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchMovies } from "../../store/reducers/movieReducer";
+import { fetchMovies } from "../../store/asyncActions";
+
+import style from "./search.module.scss"
+import useUpdatedUrl from "../../hooks/useUpdatedUrl";
 
 export const Search:React.FunctionComponent = () => {
     const dispatch = useDispatch()
-    const history = useHistory();
+    const { updateUrl } = useUpdatedUrl()
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const urlParams = new URLSearchParams(location.search);
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value)
     }
     const submit = () => {
-        const genre = urlParams.get('genre');
-        history.push({
-            pathname: `/search/${searchQuery}${genre ? "?genre=" + genre : ""}`,
-        });
-        dispatch(fetchMovies(searchQuery))
+        updateUrl(searchQuery).then((query) => dispatch(fetchMovies(query)))
         setSearchQuery('')
     }
     const submitHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -31,12 +28,12 @@ export const Search:React.FunctionComponent = () => {
     }
 
     return (
-        <div className="search">
+        <div className={ style.search }>
             <PrimaryTitle
                 title={ "FIND YOUR MOViE" }
-                additionalClass={ "search" }
+                additionalClass={ style.search__title }
             />
-            <div className="search__inner">
+            <div className={ style.search__inner }>
                 <SearchField
                     searchQuery={ searchQuery }
                     changeHandler={ changeHandler }
@@ -46,7 +43,7 @@ export const Search:React.FunctionComponent = () => {
                     clickHandler={ submit }
                     title={ "Search" }
                     buttonType="primary-button"
-                    additionalClass="search__btn"
+                    additionalClass={ style.search__btn }
                 />
             </div>
         </div>

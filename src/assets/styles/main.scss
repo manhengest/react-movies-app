@@ -1,4 +1,5 @@
 @use "fonts";
+@use "variables" as *;
 
 * {
     margin: 0;
@@ -59,4 +60,32 @@ img {
 
 .relative {
     position: relative;
+}
+
+.custom-input {
+    display: block;
+    width: 100%;
+    background: rgba(50, 50, 50, 0.948044);
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    border-radius: 4px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding: 16px;
+    max-height: 56px;
+    &::placeholder {
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+        opacity: 0.3;
+    }
+    &[type="date"]::-webkit-inner-spin-button,
+    &[type="date"]::-webkit-calendar-picker-indicator {
+        background: url("../icons/calendar-icon.svg") no-repeat 95% center;
+    }
+}
+
+.detailed-movie-info {
+    background: $mainBg;
+    padding-bottom: 30px;
 }

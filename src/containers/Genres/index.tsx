@@ -1,48 +1,34 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "./genres.scss"
+import { useRouter } from "next/router";
+
 import { GenreItem } from "../../components/GenreItem";
-import { genres } from "../../utils/common";
-import { addOrRemoveFromArray } from "../../utils/utils";
-import { fetchMovies } from "../../store/reducers/movieReducer";
-import { useHistory } from "react-router-dom";
+import { genres } from "../../utils";
+import { addOrRemoveFromArray } from "../../utils";
+import { fetchMovies } from "../../store/asyncActions";
+import useUpdatedUrl from "../../hooks/useUpdatedUrl";
+
+import style from "./genres.module.scss"
 
 export const Genres:React.FunctionComponent = () => {
     const dispatch = useDispatch()
-    const history = useHistory();
+    const { updateUrl } = useUpdatedUrl()
+    const router = useRouter()
+    const genresToArray = (genres: string | null) => genres ? genres.split(",") : [];
 
-    const query = location.pathname.split("/")[2]
-
-    const urlParams = new URLSearchParams(location.search);
-    let selectedGenres: string[] = []
+    let genresFromUrl = router.query?.genres as string | null
+    let selectedGenres = genresToArray(genresFromUrl)
 
     const clickHandler = (title: string, id: number) => {
-        updateUrl(title, id)
-        dispatch(fetchMovies(query))
-    }
-
-    const updateUrl = (title: string, id: number) => {
-        const genre = urlParams.get('genre');
-        const genresToArray = () => genre ? genre.split(",") : [];
-
-        if (id !== 1) {
-            selectedGenres = addOrRemoveFromArray(genresToArray(), title);
-        } else {
-            selectedGenres = []
-        }
-
-        urlParams.set('genre', selectedGenres.join(","));
-
-        history.push({
-            pathname: `/search/${query}${selectedGenres.length ? "?genre=" + selectedGenres.join(",") : ""}`,
-        });
+        selectedGenres = addOrRemoveFromArray(selectedGenres, title)
+        updateUrl("", selectedGenres.join(",")).then((query) => dispatch(fetchMovies(query)))
     }
 
     return (
-        <ul className="genres">
+        <ul className={ style.genres }>
             {
                 genres.map(genre =>
-                    <li key={ genre.id } className="genres__item">
+                    <li key={ genre.id } className={ style.genres__item }>
                         <GenreItem
                             id={ genre.id }
                             clickHandler={ clickHandler }

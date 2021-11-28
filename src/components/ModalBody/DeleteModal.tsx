@@ -1,23 +1,24 @@
 import React from "react";
 import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMovie, fetchMovies } from "../../store/reducers/movieReducer";
 import { toggleModal } from "../../store/reducers/appReducer";
-import { RootState } from "../../store";
+import { deleteMovie } from "../../api/movies";
+import { fetchMovies } from "../../store/asyncActions";
+import { RootState } from "../../store/reducers/rootReducer";
 
-export const DeleteModal:React.FunctionComponent = () => {
+export const DeleteModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()
     const selectedMovieId = useSelector((state: RootState) => state.appData.movieId)
 
     const handleDelete = () => {
-        dispatch(deleteMovie(selectedMovieId)).then(() => {
-            // dispatch(fetchMovies())
+        deleteMovie(selectedMovieId).then(() => {
+            dispatch(fetchMovies())
         })
         dispatch(toggleModal("isDeleteModalOpened", false))
-
     }
+    const visible = modalType === "isDeleteModalOpened"
 
-    return (
+    return visible ? (
         <div className="delete-modal">
             <div className="modal__body">
                 <p className="modal__txt">
@@ -33,5 +34,5 @@ export const DeleteModal:React.FunctionComponent = () => {
                 />
             </div>
         </div>
-    )
+    ) : null
 }

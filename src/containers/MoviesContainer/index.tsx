@@ -1,12 +1,12 @@
 import React from "react";
-import "./movies.scss"
+import style from "./movies.module.scss"
 import { Filter } from "../Filter";
 import { MoviesList } from "../MoviesList";
 import ErrorBoundary from "../ErrorBoundary";
 
 export const MoviesContainer:React.FunctionComponent = () => {
     return (
-       <section className="movies">
+       <section className={ style.movies }>
            <Filter />
            <ErrorBoundary>
                <MoviesList />

@@ -1,6 +1,7 @@
-import { act } from "@testing-library/react";
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useRouter } from "next/router";
+
+import style from "./genre-btn.module.scss"
 
 interface GenreItemProps {
     clickHandler(title: string, id: number): void,
@@ -9,19 +10,15 @@ interface GenreItemProps {
 }
 
 export const GenreItem:React.FunctionComponent<GenreItemProps> = ({ id, clickHandler, title }) => {
-    const urlParams = new URLSearchParams(location.search)
+    const router = useRouter();
+    const urlParams = new URLSearchParams(router.pathname)
     const genre = urlParams.get("genre");
     const isActive = genre?.includes(title) || (!genre && id === 1)
-    let url = useLocation();
-
-    act(() => {
-        useEffect(() => {}, [url]);
-    });
 
     return (
         <button
             onClick={ () => clickHandler(title, id) }
-            className={ `genres__btn ${ isActive ? "genres__btn_active" : "" }` }
+            className={ `${ style["genres-btn"] } ${ isActive ? style["genres-btn_active"] : "" }` }
         >
             { title }
         </button>

@@ -1,0 +1,8 @@
+@use "../../assets/styles/variables" as *;
+
+.genres {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 4;
+}

@@ -1,5 +1,7 @@
 import { APP_TYPES } from "../types";
-import { Movie, ReduxAction } from "../../components/MovieCard/interface";
+import { Movie } from "../../components/MovieCard/interface";
+import { AnyAction } from "redux";
+import { HYDRATE } from "next-redux-wrapper";
 
 export const initialState = {
     isAddModalOpened: false,
@@ -11,15 +13,11 @@ export const initialState = {
     detailedViewData: {},
 }
 
-export default function appReducer(state: typeof initialState = initialState, action: ReduxAction) {
+export default function appReducer(state: typeof initialState = initialState, action: AnyAction) {
     switch (action.type) {
+        case HYDRATE:
+            return {...state, ...action.payload.appData};
         case APP_TYPES.TOGGLE_MODAL: {
-            if (action.payload.status) {
-                document.documentElement.classList.add("no-scroll")
-            } else {
-                document.documentElement.classList.remove("no-scroll")
-            }
-
             return {
                 ...state,
                 [action.payload.variable]: action.payload.status,
@@ -57,8 +55,11 @@ export const setViewMode = (mode: string) => ({
     payload: mode
 })
 
-export const setDetailedViewData = (data: Movie) => ({
-    type: APP_TYPES.SET_DETAILED_VIEW_DATA,
-    payload: data
-})
+export const setDetailedViewData = (data: Movie) => {
+    // console.log(data);
+    return {
+        type: APP_TYPES.SET_DETAILED_VIEW_DATA,
+        payload: data
+    }
+}
 

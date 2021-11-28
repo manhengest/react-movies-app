@@ -1,5 +1,5 @@
 import React from "react";
-import "./buttons.scss"
+import style from "./buttons.module.scss"
 
 export interface ButtonProps {
     title: string,
@@ -10,14 +10,13 @@ export interface ButtonProps {
     clickHandler?: () => void
 }
 
-
 export const Button:React.FunctionComponent<ButtonProps> = ({ title, clickHandler, buttonType, type = "button", disabled, additionalClass }) => {
     return (
         <button
             type={ type }
             disabled={ disabled }
             onClick={ clickHandler }
-            className={ `btn ${ buttonType } ${ additionalClass ? additionalClass : "" }` }
+            className={ `${style.btn} ${ style[buttonType] } ${ additionalClass ? additionalClass : "" }` }
         >
             { title }
         </button>

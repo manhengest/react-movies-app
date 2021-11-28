@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form, ErrorMessage } from 'formik';
+import { AxiosResponse } from "axios";
+
+import { act } from "@testing-library/react";
 import { LabeledInput } from "../Forms/LabeledInput";
 import { CustomSelect } from "../Forms/CustomSelect";
 import { Button } from "../Button";
 import { CustomCheckbox } from "../Forms/CustomCheckbox";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
-import { genres } from "../../utils/common";
-import { createMovie, fetchMovies, getMovie, updateMovie } from "../../store/reducers/movieReducer";
-import { Formik, Form, ErrorMessage } from 'formik';
-import { RootState } from "../../store";
-import { act } from "@testing-library/react";
+import { genres } from "../../utils";
+import { addMovie, getMovie, updateMovie } from "../../api/movies";
+import { fetchMovies } from "../../store/asyncActions";
+import { Movie, MoviesResponse } from "../MovieCard/interface";
+import { RootState } from "../../store/reducers/rootReducer";
 
 export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()
@@ -22,7 +26,7 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
         }
     }
 
-    const initialValues = {
+    const initialValues: Movie = {
         id: undefined,
         title: "",
         poster_path: "",
@@ -32,8 +36,9 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
         overview: "",
         genres: []
     }
+    const visible = modalType === "isAddModalOpened" || modalType === "isEditModalOpened"
 
-    return (
+    return visible ? (
         <div className="movie-modal">
             <Formik
                 initialValues={ initialValues }
@@ -68,14 +73,14 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                 } }
                 onSubmit={ (values, { setSubmitting } ) => {
                     if (modalType === "isAddModalOpened") {
-                        dispatch(createMovie(values)).then(() => {
+                        addMovie(values).then(() => {
                             setSubmitting(false);
                             closeModal()
                             dispatch(toggleModal("isSuccessModalOpened", true))
                             dispatch(fetchMovies())
                         })
                     } else {
-                        dispatch(updateMovie(values)).then(() => {
+                        updateMovie(values).then(() => {
                             setSubmitting(false);
                             closeModal()
                             dispatch(toggleModal("isSuccessModalOpened", true))
@@ -90,9 +95,12 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                     act(() => {
                         useEffect(() => {
                             if (modalType === "isEditModalOpened") {
-                                dispatch(getMovie(selectedMovieId)).then((movie) => {
-                                    const fields = ["id", "poster_path", "title", "genres", "release_date", "runtime", "overview", "vote_average"];
-                                    fields.forEach(field => setFieldValue(field, movie.data[field], false));
+                                getMovie(selectedMovieId).then((response: AxiosResponse<MoviesResponse>) => {
+                                    const fields: string[] = Object.keys(response.data);
+
+                                    fields.forEach(field => {
+                                        setFieldValue(field, (response.data as any)[field], false)
+                                    });
                                     setMovie(movie);
                                 });
                             }
@@ -194,5 +202,5 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
                 }}
             </Formik>
         </div>
-    )
+    ) : null
 }

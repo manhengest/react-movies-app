@@ -1,0 +1,15 @@
+@use "../../assets/styles/variables" as *;
+
+.genres-btn {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 20px 13px;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom-color .3s ease;
+    &_active {
+        border-bottom-color: $primary;
+    }
+}

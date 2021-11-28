@@ -12,8 +12,8 @@ import axios from 'axios';
 import { Search } from "./index";
 import { initialState } from "../../store/reducers/movieReducer";
 import { MOVIES_TYPES } from "../../store/types";
-import { fetchMovies } from "../../store/reducers/movieReducer";
 import { renderWithRedux } from "../../utils/test-helpers";
+import { fetchMovies } from "../../store/asyncActions";
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)

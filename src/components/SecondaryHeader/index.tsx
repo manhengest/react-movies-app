@@ -1,24 +1,24 @@
 import React from "react";
-import "./secondary-header.scss"
+
 import { Container } from "../../containers/Container";
 import { Logo } from "../Logo";
 import { SearchButton } from "../SearchButton";
-import { useDispatch } from "react-redux";
-import { setViewMode } from "../../store/reducers/appReducer";
+
+import style from "./secondary-header.module.scss"
+import router from "next/router";
 
 export const SecondaryHeader:React.FunctionComponent = () => {
-    const dispatch = useDispatch()
-    const changeView = (e: React.SyntheticEvent) => {
+    const clickHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(setViewMode("search"))
+        router.push("/search")
     }
 
     return (
-        <header className="secondary-header">
+        <header className={ style["secondary-header"] }>
             <Container>
-                <div className="secondary-header__inner">
-                    <Logo type="regular" />
-                    <SearchButton handler={ changeView } />
+                <div className={ style["secondary-header__inner"] }>
+                    <Logo additionalClass="logo_regular" />
+                    <SearchButton handler={ clickHandler } />
                 </div>
             </Container>
         </header>

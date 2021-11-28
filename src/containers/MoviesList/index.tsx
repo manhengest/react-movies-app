@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from 'react-redux'
-import "./movie-list.scss"
+import style from "./movie-list.module.scss"
 import { Container } from "../Container";
 import { MovieCard } from "../../components/MovieCard";
 import { Movie } from "../../components/MovieCard/interface";
@@ -10,9 +10,9 @@ export const MoviesList:React.FunctionComponent = () => {
     const movies = useSelector((state: RootState) => state.moviesData.movies)
 
     return (
-        <div className="movies-list">
+        <div className={ style["movies-list"] }>
             <Container>
-                <div className="movies-list__inner">
+                <div className={ style["movies-list__inner"] }>
                     {
                         movies.map((movie: Movie) =>
                             <MovieCard
