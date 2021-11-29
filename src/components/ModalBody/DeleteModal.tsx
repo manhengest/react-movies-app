@@ -1,14 +1,14 @@
 import React from "react";
-import { Button } from "../Button";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleModal } from "../../store/reducers/appReducer";
+
+import { Button } from "../Button";
+import { movieIDSelector, toggleModal } from "../../store/reducers/appReducer";
 import { deleteMovie } from "../../api/movies";
 import { fetchMovies } from "../../store/asyncActions";
-import { RootState } from "../../store/reducers/rootReducer";
 
 export const DeleteModal:React.FunctionComponent<{ modalType: string }> = ({ modalType }) => {
     const dispatch = useDispatch()
-    const selectedMovieId = useSelector((state: RootState) => state.appData.movieId)
+    const selectedMovieId = useSelector(movieIDSelector)
 
     const handleDelete = () => {
         deleteMovie(selectedMovieId).then(() => {

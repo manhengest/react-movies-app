@@ -1,5 +1,6 @@
 import React, { JSXElementConstructor, ReactElement } from "react";
 import Head from "next/head";
+import { Modals } from "../containers/Modals";
 
 interface MainLayoutProps {
     children: ReactElement<any, string | JSXElementConstructor<any>> | JSX.Element[],
@@ -17,6 +18,8 @@ export const MainLayout:React.FunctionComponent<MainLayoutProps> = ({ children, 
             </Head>
             <main>
                 { children }
+
+                <Modals />
             </main>
         </>
     )

@@ -7,7 +7,6 @@ export enum Genre {
 }
 
 export interface Movie {
-    id?: number,
     poster_path: string,
     title: string,
     genres: string[],
@@ -15,6 +14,10 @@ export interface Movie {
     runtime: number | "",
     overview: string,
     vote_average: number | ""
+}
+
+export interface UniqMovie extends Movie {
+    id: number
 }
 
 export interface MoviesResponse {

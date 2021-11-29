@@ -1,20 +1,22 @@
 import React from "react";
 import { useSelector } from 'react-redux'
-import style from "./movie-list.module.scss"
+
 import { Container } from "../Container";
 import { MovieCard } from "../../components/MovieCard";
-import { Movie } from "../../components/MovieCard/interface";
-import { RootState } from "../../store";
+import { UniqMovie } from "../../components/MovieCard/interface";
+import { moviesSelector } from "../../store/reducers/movieReducer";
+
+import style from "./movie-list.module.scss"
 
 export const MoviesList:React.FunctionComponent = () => {
-    const movies = useSelector((state: RootState) => state.moviesData.movies)
+    const movies = useSelector(moviesSelector)
 
     return (
         <div className={ style["movies-list"] }>
             <Container>
                 <div className={ style["movies-list__inner"] }>
                     {
-                        movies.map((movie: Movie) =>
+                        movies.map((movie: UniqMovie) =>
                             <MovieCard
                                 key={ movie.id }
                                 id={ movie.id }
