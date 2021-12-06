@@ -1,5 +1,4 @@
 import React from "react";
-import "../inputs.scss"
 import { CustomLabel } from "../CustomLabel";
 import { ErrorMessage, Field } from "formik";
 

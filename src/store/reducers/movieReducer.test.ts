@@ -1,9 +1,9 @@
 import movieReducer, { updateMovies, initialState, updateMoviesCount } from "./movieReducer";
-import { Movie } from "../../components/MovieCard/interface";
+import { UniqMovie } from "../../components/MovieCard/interface";
 
 describe("Movie Reducer", () => {
     test("add movie", () => {
-        const movies: Movie[] = [
+        const movies: UniqMovie[] = [
             {
                 id: 1,
                 poster_path: "/test/path",

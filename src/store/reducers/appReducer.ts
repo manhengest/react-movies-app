@@ -1,16 +1,17 @@
-import { APP_TYPES } from "../types";
-import { Movie } from "../../components/MovieCard/interface";
 import { AnyAction } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
+import { createSelector } from "reselect";
+
+import { APP_TYPES } from "../types";
+import { UniqMovie } from "../../components/MovieCard/interface";
+import { RootState } from "./rootReducer";
 
 export const initialState = {
     isAddModalOpened: false,
     isEditModalOpened: false,
     isDeleteModalOpened: false,
     isSuccessModalOpened: false,
-    movieId: null,
-    viewMode: "search",
-    detailedViewData: {},
+    movieId: null
 }
 
 export default function appReducer(state: typeof initialState = initialState, action: AnyAction) {
@@ -55,11 +56,14 @@ export const setViewMode = (mode: string) => ({
     payload: mode
 })
 
-export const setDetailedViewData = (data: Movie) => {
-    // console.log(data);
-    return {
-        type: APP_TYPES.SET_DETAILED_VIEW_DATA,
-        payload: data
-    }
-}
+export const setDetailedViewData = (data: UniqMovie) => ({
+    type: APP_TYPES.SET_DETAILED_VIEW_DATA,
+    payload: data
+})
 
+export const appStateSelector = (state: RootState) => state.appData;
+
+export const movieIDSelector = createSelector(
+    appStateSelector,
+    (state) => state.movieId
+);

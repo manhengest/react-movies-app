@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { RootState } from "../../store/reducers/rootReducer";
+import { totalCountSelector } from "../../store/reducers/movieReducer";
 
 import style from "./results-counter.module.scss"
 
 export const ResultsCounter:React.FunctionComponent = () => {
-    const totalCount = useSelector((state: RootState) => state.moviesData.total)
+    const totalCount = useSelector(totalCountSelector)
 
     return (
         <div className={ style["results-counter"] }>

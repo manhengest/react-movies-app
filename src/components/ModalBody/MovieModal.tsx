@@ -27,7 +27,6 @@ export const MovieModal:React.FunctionComponent<{ modalType: string }> = ({ moda
     }
 
     const initialValues: Movie = {
-        id: undefined,
         title: "",
         poster_path: "",
         release_date: "",

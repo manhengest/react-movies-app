@@ -1,8 +1,9 @@
 import React from "react";
+import { GetServerSideProps } from "next";
+
 import { MainLayout } from "../../layouts/MainLayout";
 import { MoviesContainer } from "../../containers/MoviesContainer";
 import { Footer } from "../../components/Footer";
-import { GetServerSideProps } from "next";
 import { wrapper } from "../../store";
 import { fetchMovieDetails, fetchMovies } from "../../store/asyncActions";
 import { DetailedMovieInfoWrapper } from "../../containers/DetailedMovieInfoWrapper";
@@ -10,11 +11,9 @@ import { DetailedMovieInfoWrapper } from "../../containers/DetailedMovieInfoWrap
 const MoviePage:React.FunctionComponent = () => {
     return (
         <MainLayout title="Movie">
-            <MainLayout>
-                <DetailedMovieInfoWrapper />
-                <MoviesContainer />
-                <Footer />
-            </MainLayout>
+            <DetailedMovieInfoWrapper />
+            <MoviesContainer />
+            <Footer />
         </MainLayout>
     )
 }

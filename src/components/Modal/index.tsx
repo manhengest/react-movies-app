@@ -1,12 +1,12 @@
 import React from "react";
-import "./modal.scss"
+import { useDispatch, useSelector } from "react-redux";
+
 import { MovieModal } from "../ModalBody/MovieModal";
 import { DeleteModal } from "../ModalBody/DeleteModal";
 import { OutsideAlerter } from "../../containers/OutsideAlerter";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../store/reducers/appReducer";
 import { SuccessModal } from "../ModalBody/SuccessModal";
-import { RootState } from "../../store";
+import { RootState } from "../../store/reducers/rootReducer";
 
 interface ModalProps {
     variable: "isAddModalOpened" | "isEditModalOpened" | "isDeleteModalOpened" | "isSuccessModalOpened"
@@ -38,7 +38,7 @@ export const Modal:React.FunctionComponent<ModalProps> = ({ variable }) => {
             break
     }
 
-    return !!visible ? (
+    return visible ? (
         <div className="overlay">
             <OutsideAlerter fn={ onClose }>
                 <div className={ `modal modal_${ modalType } modal_${ variable }` }>
